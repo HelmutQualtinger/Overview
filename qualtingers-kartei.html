@@ -144,8 +144,10 @@
     display:flex; align-items:center; justify-content:center;
     border:none; background:transparent; color:var(--ink-soft);
     border-radius:980px; cursor:pointer; padding:0;
+    font-size:14px; line-height:1;
     transition:background .2s ease, color .2s ease;
   }
+  .seg + .seg{margin-left:6px;}
   .seg button svg{width:14px; height:14px;}
   .seg button[aria-pressed="true"]{background:var(--card); color:var(--ink); box-shadow:0 1px 3px rgba(0,0,0,.12);}
   .seg button:focus-visible{outline:2px solid var(--accent); outline-offset:1px;}
@@ -315,6 +317,7 @@
 
   .card-top{display:flex; align-items:flex-start; justify-content:space-between; gap:12px;}
   .card-icon{
+    position:relative; overflow:hidden;
     width:46px; height:46px; flex:none;
     display:flex; align-items:center; justify-content:center;
     border-radius:13px;
@@ -322,6 +325,10 @@
     transition:transform .3s cubic-bezier(.28,.11,.32,1);
   }
   .card-icon svg{width:24px; height:24px;}
+  .card-icon img{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; border-radius:inherit; display:block;
+  }
   .card:hover .card-icon{transform:scale(1.07) rotate(-2deg);}
   .go{
     font-size:13px; color:var(--ink-faint);
@@ -405,6 +412,9 @@
   @media (max-width:833px){
     .nav-links{display:none;}
     .burger{display:flex;}
+  }
+  @media (max-width:560px){
+    .brand-text{display:none;}
   }
   @media (max-width:480px){
     .card{padding:22px 20px 18px;}
@@ -658,23 +668,28 @@
 </defs>
 </svg>
 
-<nav class="nav" aria-label="Rubriken">
+<nav class="nav" aria-label="Rubriken" data-i18n-attr-aria-label="ariaNav">
   <div class="nav-inner">
-    <a class="brand" href="#top"><span class="glyph">Q</span>Qualtingers&nbsp;Kartei</a>
+    <a class="brand" href="#top"><span class="glyph">Q</span><span class="brand-text">Qualtingers&nbsp;Kartei</span></a>
     <div class="nav-links">
-      <a href="#hommagen">Hommagen</a>
-      <a href="#physik">Physik &amp; Chaos</a>
-      <a href="#karten">Karten &amp; Daten</a>
-      <a href="#spiele">Spiele</a>
-      <a href="#werkzeuge">Werkzeuge</a>
+      <a href="#hommagen" data-i18n="navHommagen">Hommagen</a>
+      <a href="#physik" data-i18n="navPhysik">Physik &amp; Chaos</a>
+      <a href="#karten" data-i18n="navKarten">Karten &amp; Daten</a>
+      <a href="#spiele" data-i18n="navSpiele">Spiele</a>
+      <a href="#werkzeuge" data-i18n="navWerkzeuge">Werkzeuge</a>
     </div>
-    <button class="burger" id="sheetToggle" aria-label="Rubriken öffnen" aria-expanded="false" aria-controls="sheet">
+    <button class="burger" id="sheetToggle" aria-label="Rubriken öffnen" aria-expanded="false" aria-controls="sheet" data-i18n-attr-aria-label="ariaBurger">
       <svg viewBox="0 0 24 24"><use href="#i-menu"/></svg>
     </button>
-    <div class="seg" role="group" aria-label="Farbschema">
-      <button data-theme-choice="light" aria-label="Helles Design" aria-pressed="false"><svg viewBox="0 0 24 24"><use href="#i-sun"/></svg></button>
-      <button data-theme-choice="dark" aria-label="Dunkles Design" aria-pressed="false"><svg viewBox="0 0 24 24"><use href="#i-moon"/></svg></button>
-      <button data-theme-choice="system" aria-label="Systemeinstellung" aria-pressed="false"><svg viewBox="0 0 24 24"><use href="#i-monitor"/></svg></button>
+    <div class="seg" role="group" aria-label="Sprache">
+      <button data-lang-choice="de" aria-label="Deutsch" aria-pressed="false">🇦🇹</button>
+      <button data-lang-choice="en" aria-label="English" aria-pressed="false">🇬🇧</button>
+      <button data-lang-choice="it" aria-label="Italiano" aria-pressed="false">🇮🇹</button>
+    </div>
+    <div class="seg" role="group" aria-label="Farbschema" data-i18n-attr-aria-label="ariaThemeGroup">
+      <button data-theme-choice="light" aria-label="Helles Design" aria-pressed="false" data-i18n-attr-aria-label="ariaThemeLight"><svg viewBox="0 0 24 24"><use href="#i-sun"/></svg></button>
+      <button data-theme-choice="dark" aria-label="Dunkles Design" aria-pressed="false" data-i18n-attr-aria-label="ariaThemeDark"><svg viewBox="0 0 24 24"><use href="#i-moon"/></svg></button>
+      <button data-theme-choice="system" aria-label="Systemeinstellung" aria-pressed="false" data-i18n-attr-aria-label="ariaThemeSystem"><svg viewBox="0 0 24 24"><use href="#i-monitor"/></svg></button>
     </div>
   </div>
 </nav>
@@ -683,29 +698,29 @@
 
 <div class="sheet" id="sheet" aria-hidden="true">
   <div class="sheet-links">
-    <a href="#hommagen"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-portrait"/></svg></span>Hommagen &amp; Porträts</a>
-    <a href="#physik"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-atom"/></svg></span>Physik &amp; Chaos</a>
-    <a href="#karten"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></span>Karten &amp; Daten</a>
-    <a href="#spiele"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-dice"/></svg></span>Spiele &amp; Rätsel</a>
-    <a href="#werkzeuge"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-toolbox"/></svg></span>Werkzeuge &amp; Lernen</a>
+    <a href="#hommagen"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-portrait"/></svg></span><span data-i18n="sheetHommagen">Hommagen &amp; Porträts</span></a>
+    <a href="#physik"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-atom"/></svg></span><span data-i18n="navPhysik">Physik &amp; Chaos</span></a>
+    <a href="#karten"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></span><span data-i18n="navKarten">Karten &amp; Daten</span></a>
+    <a href="#spiele"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-dice"/></svg></span><span data-i18n="sheetSpiele">Spiele &amp; Rätsel</span></a>
+    <a href="#werkzeuge"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-toolbox"/></svg></span><span data-i18n="sheetWerkzeuge">Werkzeuge &amp; Lernen</span></a>
   </div>
 </div>
 
 <header class="hero" id="top">
   <canvas id="pendulumCanvas" aria-hidden="true"></canvas>
   <div class="hero-inner">
-    <p class="kicker">46 Projekte. Ein Profil. Live auf GitHub Pages.</p>
+    <p class="kicker" data-i18n="heroKicker">46 Projekte. Ein Profil. Live auf GitHub Pages.</p>
     <h1 class="title">Qualtingers Kartei</h1>
-    <p class="lede">Interaktive Fundstücke zwischen Kabarett, Chaostheorie und Kartografie — jedes einzeln veröffentlicht von <strong>@HelmutQualtinger</strong>. Die Wirbelspur im Hintergrund ist kein Muster, sondern ein echtes Doppelpendel in Echtzeit.</p>
+    <p class="lede" data-i18n-html="heroLede">Interaktive Fundstücke zwischen Kabarett, Chaostheorie und Kartografie — jedes einzeln veröffentlicht von <strong>@HelmutQualtinger</strong>. Die Wirbelspur im Hintergrund ist kein Muster, sondern ein echtes Doppelpendel in Echtzeit.</p>
     <div class="cta-row">
-      <a class="btn" href="#hommagen">Kartei durchsehen</a>
-      <a class="link-more" href="https://github.com/HelmutQualtinger" target="_blank" rel="noopener">Profil auf GitHub <span class="chev">›</span></a>
+      <a class="btn" href="#hommagen" data-i18n="heroCtaPrimary">Kartei durchsehen</a>
+      <a class="link-more" href="https://github.com/HelmutQualtinger" target="_blank" rel="noopener" data-i18n-html="heroCtaSecondary">Profil auf GitHub <span class="chev">›</span></a>
     </div>
     <div class="hero-stats">
-      <div><b>122</b><span>Repositories</span></div>
-      <div><b>46</b><span>mit Pages live</span></div>
-      <div><b>5</b><span>Rubriken</span></div>
-      <div><b>07.09.26</b><span>Stand</span></div>
+      <div><b>122</b><span data-i18n="statRepos">Repositories</span></div>
+      <div><b>46</b><span data-i18n="statLive">mit Pages live</span></div>
+      <div><b>5</b><span data-i18n="statRubriken">Rubriken</span></div>
+      <div><b>07.09.26</b><span data-i18n="statStand">Stand</span></div>
     </div>
   </div>
 </header>
@@ -714,33 +729,33 @@
 
       <section id="hommagen">
         <div class="section-head">
-          <p class="eyebrow"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-portrait"/></svg></span>Hommagen &amp; Porträts</p>
-          <h2>Die Stimmen, die bleiben.</h2>
-          <span class="count">4 Projekte</span>
+          <p class="eyebrow"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-portrait"/></svg></span><span data-i18n="sheetHommagen">Hommagen &amp; Porträts</span></p>
+          <h2 data-i18n="sectionHommagenH2">Die Stimmen, die bleiben.</h2>
+          <span class="count" data-i18n="sectionHommagenCount">4 Projekte</span>
         </div>
         <div class="grid">
           <a class="card" href="https://helmutqualtinger.github.io/Wissenschafter/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-portrait"/></svg></span><span class="go">↗</span></div>
             <h3>Wissenschafter</h3>
-            <p>Interactive profiles of famous scientists</p>
+            <p data-i18n="cardWissenschafter">Interaktive Profile berühmter Wissenschaftler</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/Goethe/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-quill"/></svg></span><span class="go">↗</span></div>
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Goethe/Goethe.jpg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-quill"/></svg></span><span class="go">↗</span></div>
             <h3>Goethe</h3>
-            <p>Interactive tribute to Johann Wolfgang von Goethe</p>
+            <p data-i18n="cardGoethe">Interaktive Hommage an Johann Wolfgang von Goethe</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/Qualtinger/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-mic"/></svg></span><span class="go">↗</span></div>
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Qualtinger/qualtingerportraet.5005575.jpg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-mic"/></svg></span><span class="go">↗</span></div>
             <h3>Qualtinger</h3>
-            <p>Interactive tribute to Helmut Qualtinger</p>
+            <p data-i18n="cardQualtinger">Interaktive Hommage an Helmut Qualtinger</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/Artmann/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-quill"/></svg></span><span class="go">↗</span></div>
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Artmann/assets/972048_opener_341579_hc_artmann_100_jahre_19970101_pd3399_p.jpg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-quill"/></svg></span><span class="go">↗</span></div>
             <h3>Artmann</h3>
-            <p>Interactive tribute to H.C. Artmann</p>
+            <p data-i18n="cardArtmann">Interaktive Hommage an H.C. Artmann</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
           </a>
         </div>
@@ -748,57 +763,57 @@
 
       <section id="physik">
         <div class="section-head">
-          <p class="eyebrow"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-atom"/></svg></span>Physik, Geometrie &amp; Chaos</p>
-          <h2>Wo die Ordnung kippt.</h2>
-          <span class="count">10 Projekte</span>
+          <p class="eyebrow"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-atom"/></svg></span><span data-i18n="sectionPhysikEyebrow">Physik, Geometrie &amp; Chaos</span></p>
+          <h2 data-i18n="sectionPhysikH2">Wo die Ordnung kippt.</h2>
+          <span class="count" data-i18n="sectionPhysikCount">10 Projekte</span>
         </div>
         <div class="grid">
           <a class="card" href="https://helmutqualtinger.github.io/dodekaeder/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-polyhedron"/></svg></span><span class="go">↗</span></div>
             <h3>dodekaeder</h3>
-            <p>Two interactive 3D dodecahedron portrait galleries (Three.js)</p>
+            <p data-i18n="cardDodekaeder">Zwei interaktive 3D-Dodekaeder-Porträtgalerien (Three.js)</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Sep 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/Museum3d/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-landmark"/></svg></span><span class="go">↗</span></div>
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Museum3d/docs/og-image.jpg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-landmark"/></svg></span><span class="go">↗</span></div>
             <h3>Museum3d</h3>
-            <p>A walkable 3D art museum built with Three.js</p>
+            <p data-i18n="cardMuseum3d">Begehbares 3D-Kunstmuseum, gebaut mit Three.js</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/Doppelpendel/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-pendulum"/></svg></span><span class="go">↗</span></div>
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Doppelpendel/screenshot_fpoe.jpg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-pendulum"/></svg></span><span class="go">↗</span></div>
             <h3>Doppelpendel</h3>
-            <p>Chaotisches Doppelpendel — dieselbe Physik, die den Hintergrund oben zeichnet</p>
+            <p data-i18n="cardDoppelpendel">Chaotisches Doppelpendel — dieselbe Physik, die den Hintergrund oben zeichnet</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/newtonian-particle-sim/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-apple"/></svg></span><span class="go">↗</span></div>
             <h3>newtonian-particle-sim</h3>
-            <p>Newtonian particle physics simulator in TypeScript</p>
+            <p data-i18n="cardNewtonian">Newtonscher Teilchenphysik-Simulator in TypeScript</p>
             <div class="card-foot"><span><span class="lang-dot"></span>TypeScript</span><span>Apr 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/PeriodicTable/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-flask"/></svg></span><span class="go">↗</span></div>
             <h3>PeriodicTable</h3>
-            <p>Interactive periodic table of elements</p>
+            <p data-i18n="cardPeriodicTable">Interaktives Periodensystem der Elemente</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/Feigenbaum-interactive/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-branch"/></svg></span><span class="go">↗</span></div>
             <h3>Feigenbaum-interactive</h3>
-            <p>Interactive Feigenbaum bifurcation diagram</p>
+            <p data-i18n="cardFeigenbaum">Interaktives Feigenbaum-Bifurkationsdiagramm</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/Wolfram-JS/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-grid"/></svg></span><span class="go">↗</span></div>
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Wolfram-JS/screenshot.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-grid"/></svg></span><span class="go">↗</span></div>
             <h3>Wolfram-JS</h3>
-            <p>Wolfram elementary cellular automata in JavaScript</p>
+            <p data-i18n="cardWolframJS">Wolframs elementare zelluläre Automaten in JavaScript</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/js-mandelbrot/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-spiral"/></svg></span><span class="go">↗</span></div>
             <h3>js-mandelbrot</h3>
-            <p>Mandelbrot set explorer in JavaScript</p>
+            <p data-i18n="cardJsMandelbrot">Mandelbrot-Mengen-Explorer in JavaScript</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/gemini-js-mandelb-2/" target="_blank" rel="noopener">
@@ -810,7 +825,7 @@
           <a class="card" href="https://helmutqualtinger.github.io/Maxwell/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-bolt"/></svg></span><span class="go">↗</span></div>
             <h3>Maxwell</h3>
-            <p>Animated HTML slideshow explaining Maxwell's four equations of electromagnetism</p>
+            <p data-i18n="cardMaxwell">Animierte HTML-Slideshow zu Maxwells vier Gleichungen des Elektromagnetismus</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Mär 2026</span></div>
           </a>
         </div>
@@ -818,75 +833,75 @@
 
       <section id="karten">
         <div class="section-head">
-          <p class="eyebrow"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></span>Karten &amp; Daten</p>
-          <h2>Die Welt, in Kacheln gelesen.</h2>
-          <span class="count">12 Projekte</span>
+          <p class="eyebrow"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></span><span data-i18n="navKarten">Karten &amp; Daten</span></p>
+          <h2 data-i18n="sectionKartenH2">Die Welt, in Kacheln gelesen.</h2>
+          <span class="count" data-i18n="sectionKartenCount">12 Projekte</span>
         </div>
         <div class="grid">
           <a class="card" href="https://helmutqualtinger.github.io/BilligTanken/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-fuel"/></svg></span><span class="go">↗</span></div>
             <h3>BilligTanken</h3>
-            <p>E5 Super 95 fuel price tracker for Vorarlberg. Live E-Control Austria API, Leaflet map, GPS distances.</p>
+            <p data-i18n="cardBilligTanken">Spritpreis-Tracker für E5 Super 95 in Vorarlberg. Live E-Control-Austria-API, Leaflet-Karte, GPS-Distanzen.</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/Svizzera-Maps/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></span><span class="go">↗</span></div>
             <h3>Svizzera-Maps</h3>
-            <p>Interaktive Karte: Einkommen, Lebenserwartung &amp; Geburtenrate der Schweizer Kantone</p>
+            <p data-i18n="cardSvizzeraMaps">Interaktive Karte: Einkommen, Lebenserwartung &amp; Geburtenrate der Schweizer Kantone</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/Italia-Maps/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></span><span class="go">↗</span></div>
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Italia-Maps/og-image.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></span><span class="go">↗</span></div>
             <h3>Italia-Maps</h3>
-            <p>Interaktive Choroplethenkarte: Einkommen, Lebenserwartung und Geburtenrate der italienischen Provinzen</p>
+            <p data-i18n="cardItaliaMaps">Interaktive Choroplethenkarte: Einkommen, Lebenserwartung und Geburtenrate der italienischen Provinzen</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/Austria-Maps/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></span><span class="go">↗</span></div>
             <h3>Austria-Maps</h3>
-            <p>Interaktive Karte: Einkommen, Lebenserwartung &amp; Geburtenrate der österreichischen Bezirke</p>
+            <p data-i18n="cardAustriaMaps">Interaktive Karte: Einkommen, Lebenserwartung &amp; Geburtenrate der österreichischen Bezirke</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/Klima/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-cloud"/></svg></span><span class="go">↗</span></div>
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Klima/previews/index.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-cloud"/></svg></span><span class="go">↗</span></div>
             <h3>Klima</h3>
-            <p>Klimadaten-Visualisierung</p>
+            <p data-i18n="cardKlima">Klimadaten-Visualisierung</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/Germany-Maps/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></span><span class="go">↗</span></div>
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Germany-Maps/og-image.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></span><span class="go">↗</span></div>
             <h3>Germany-Maps</h3>
-            <p>Interaktive Karte: Einkommen, Lebenserwartung &amp; Geburtenrate der deutschen Landkreise und kreisfreien Städte</p>
+            <p data-i18n="cardGermanyMaps">Interaktive Karte: Einkommen, Lebenserwartung &amp; Geburtenrate der deutschen Landkreise und kreisfreien Städte</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/Underrepresentation/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-sortbars"/></svg></span><span class="go">↗</span></div>
             <h3>Underrepresentation</h3>
-            <p>Daten-Visualisierung zu Unterrepräsentation</p>
+            <p data-i18n="cardUnderrepresentation">Daten-Visualisierung zu Unterrepräsentation</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/RebsteinBahnhof/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-train"/></svg></span><span class="go">↗</span></div>
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/RebsteinBahnhof/og-image.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-train"/></svg></span><span class="go">↗</span></div>
             <h3>RebsteinBahnhof</h3>
-            <p>Live SBB Abfahrts-/Ankunftstafel für Rebstein-Marbach (Bahnhofsuhr-Design von Hans Hilfiker)</p>
+            <p data-i18n="cardRebsteinBahnhof">Live SBB Abfahrts-/Ankunftstafel für Rebstein-Marbach (Bahnhofsuhr-Design von Hans Hilfiker)</p>
             <div class="card-foot"><span><span class="lang-dot"></span>JavaScript</span><span>Aug 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/WeatherHistory/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-cloud"/></svg></span><span class="go">↗</span></div>
             <h3>WeatherHistory</h3>
-            <p>Historical weather data fetcher &amp; interactive dashboard</p>
+            <p data-i18n="cardWeatherHistory">Historische Wetterdaten-Abfrage &amp; interaktives Dashboard</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/WetterVorschau/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-cloud"/></svg></span><span class="go">↗</span></div>
             <h3>WetterVorschau</h3>
-            <p>72h &amp; 14-day weather forecast app with geolocation</p>
+            <p data-i18n="cardWetterVorschau">72-Stunden- &amp; 14-Tage-Wettervorhersage-App mit Geolokalisierung</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/WetterSymbol/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-sun"/></svg></span><span class="go">↗</span></div>
             <h3>WetterSymbol</h3>
-            <p>Weather icon and symbol library</p>
+            <p data-i18n="cardWetterSymbol">Bibliothek für Wettersymbole</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/montimarifiumit/" target="_blank" rel="noopener">
@@ -900,57 +915,57 @@
 
       <section id="spiele">
         <div class="section-head">
-          <p class="eyebrow"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-dice"/></svg></span>Spiele &amp; Rätsel</p>
-          <h2>Gebaut, um mitzuspielen.</h2>
-          <span class="count">8 Projekte</span>
+          <p class="eyebrow"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-dice"/></svg></span><span data-i18n="sheetSpiele">Spiele &amp; Rätsel</span></p>
+          <h2 data-i18n="sectionSpieleH2">Gebaut, um mitzuspielen.</h2>
+          <span class="count" data-i18n="sectionSpieleCount">8 Projekte</span>
         </div>
         <div class="grid">
           <a class="card" href="https://helmutqualtinger.github.io/hanoi/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-stack"/></svg></span><span class="go">↗</span></div>
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/hanoi/screenshot.jpg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-stack"/></svg></span><span class="go">↗</span></div>
             <h3>hanoi</h3>
-            <p>Türme von Hanoi</p>
+            <p data-i18n="cardHanoi">Türme von Hanoi</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/Mordraten/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-magnifier"/></svg></span><span class="go">↗</span></div>
             <h3>Mordraten</h3>
-            <p>Wer war's? Ein Detektiv-Ratespiel</p>
+            <p data-i18n="cardMordraten">Wer war's? Ein Detektiv-Ratespiel</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/Rubik/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-cube"/></svg></span><span class="go">↗</span></div>
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Rubik/social-preview.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-cube"/></svg></span><span class="go">↗</span></div>
             <h3>Rubik</h3>
-            <p>Rubik's Cube im Browser</p>
+            <p data-i18n="cardRubik">Rubik's Cube im Browser</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/RubikGoogle/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-cube"/></svg></span><span class="go">↗</span></div>
             <h3>RubikGoogle</h3>
-            <p>Rubik's Cube — zweite Variante</p>
+            <p data-i18n="cardRubikGoogle">Rubik's Cube — zweite Variante</p>
             <div class="card-foot"><span><span class="lang-dot"></span>JavaScript</span><span>Aug 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/mahjong/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-grid"/></svg></span><span class="go">↗</span></div>
             <h3>mahjong</h3>
-            <p>Mahjong-Solitär im Browser</p>
+            <p data-i18n="cardMahjong">Mahjong-Solitär im Browser</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Mai 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/SpaceInvader/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-invader"/></svg></span><span class="go">↗</span></div>
             <h3>SpaceInvader</h3>
-            <p>Browser-basiertes Space Invaders im Arcade-Stil — Pixelgrafiken, klassisches HUD, CRT-Effekt</p>
+            <p data-i18n="cardSpaceInvader">Browser-basiertes Space Invaders im Arcade-Stil — Pixelgrafiken, klassisches HUD, CRT-Effekt</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Mai 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/SudokuGeminiFlash/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-grid"/></svg></span><span class="go">↗</span></div>
             <h3>SudokuGeminiFlash</h3>
-            <p>Sudoku im Browser</p>
+            <p data-i18n="cardSudoku">Sudoku im Browser</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Mai 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/LifeJS/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-grid"/></svg></span><span class="go">↗</span></div>
             <h3>LifeJS</h3>
-            <p>Conway's Game of Life in JavaScript</p>
+            <p data-i18n="cardLifeJS">Conways Spiel des Lebens in JavaScript</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
           </a>
         </div>
@@ -958,81 +973,81 @@
 
       <section id="werkzeuge">
         <div class="section-head">
-          <p class="eyebrow"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-toolbox"/></svg></span>Werkzeuge &amp; Lernen</p>
-          <h2>Kleine Helfer, große Wirkung.</h2>
-          <span class="count">12 Projekte</span>
+          <p class="eyebrow"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-toolbox"/></svg></span><span data-i18n="sheetWerkzeuge">Werkzeuge &amp; Lernen</span></p>
+          <h2 data-i18n="sectionWerkzeugeH2">Kleine Helfer, große Wirkung.</h2>
+          <span class="count" data-i18n="sectionWerkzeugeCount">12 Projekte</span>
         </div>
         <div class="grid">
           <a class="card" href="https://helmutqualtinger.github.io/training/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-cap"/></svg></span><span class="go">↗</span></div>
             <h3>training</h3>
-            <p>Übungs- und Trainingsanwendung</p>
+            <p data-i18n="cardTraining">Übungs- und Trainingsanwendung</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Sep 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/Language-Cards/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-speech"/></svg></span><span class="go">↗</span></div>
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Language-Cards/social-preview.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-speech"/></svg></span><span class="go">↗</span></div>
             <h3>Language-Cards</h3>
-            <p>Vokabelkarten zum Sprachenlernen</p>
+            <p data-i18n="cardLanguageCards">Vokabelkarten zum Sprachenlernen</p>
             <div class="card-foot"><span><span class="lang-dot"></span>JavaScript</span><span>Sep 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/boycott/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-ban"/></svg></span><span class="go">↗</span></div>
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/boycott/social-preview.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-ban"/></svg></span><span class="go">↗</span></div>
             <h3>boycott</h3>
-            <p>Interaktives Web-Tool</p>
+            <p data-i18n="cardBoycott">Interaktives Web-Tool</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/WienerSchule/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-cap"/></svg></span><span class="go">↗</span></div>
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/WienerSchule/slide13-social-preview.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-cap"/></svg></span><span class="go">↗</span></div>
             <h3>WienerSchule</h3>
-            <p>Lernanwendung mit Wien-Bezug</p>
+            <p data-i18n="cardWienerSchule">Lernanwendung mit Wien-Bezug</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/apache/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-server"/></svg></span><span class="go">↗</span></div>
             <h3>apache</h3>
-            <p>Apache web server Docker configuration</p>
+            <p data-i18n="cardApache">Docker-Konfiguration für Apache-Webserver</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/WattRechnerFahrrad/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-bike"/></svg></span><span class="go">↗</span></div>
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/WattRechnerFahrrad/screenshots/social-preview.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-bike"/></svg></span><span class="go">↗</span></div>
             <h3>WattRechnerFahrrad</h3>
-            <p>Watt-Rechner fürs Fahrrad</p>
+            <p data-i18n="cardWattRechner">Watt-Rechner fürs Fahrrad</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/LynnIQ/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-brain"/></svg></span><span class="go">↗</span></div>
             <h3>LynnIQ</h3>
-            <p>IQ- &amp; Statistik-Visualisierung</p>
+            <p data-i18n="cardLynnIQ">IQ- &amp; Statistik-Visualisierung</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/webradio/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-radio"/></svg></span><span class="go">↗</span></div>
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/webradio/preview.svg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-radio"/></svg></span><span class="go">↗</span></div>
             <h3>webradio</h3>
-            <p>Web radio player</p>
+            <p data-i18n="cardWebradio">Webradio-Player</p>
             <div class="card-foot"><span><span class="lang-dot"></span>JavaScript</span><span>Apr 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/SortVis/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-sortbars"/></svg></span><span class="go">↗</span></div>
             <h3>SortVis</h3>
-            <p>Sorting algorithm visualizer</p>
+            <p data-i18n="cardSortVis">Visualisierung von Sortieralgorithmen</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/Zaehlen/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-abacus"/></svg></span><span class="go">↗</span></div>
             <h3>Zaehlen</h3>
-            <p>Interactive counting and numbers learning app</p>
+            <p data-i18n="cardZaehlen">Interaktive Lern-App für Zählen und Zahlen</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/KISlides/" target="_blank" rel="noopener">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-robot"/></svg></span><span class="go">↗</span></div>
             <h3>KISlides</h3>
-            <p>AI / Künstliche Intelligenz presentation slides</p>
+            <p data-i18n="cardKISlides">Präsentationsfolien zu KI / Künstlicher Intelligenz</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
           </a>
           <a class="card" href="https://helmutqualtinger.github.io/QrGenerarator/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-qr"/></svg></span><span class="go">↗</span></div>
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/QrGenerarator/screenshot.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-qr"/></svg></span><span class="go">↗</span></div>
             <h3>QrGenerarator</h3>
-            <p>QR code generator web app</p>
+            <p data-i18n="cardQrGenerator">Web-App zum Generieren von QR-Codes</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
           </a>
         </div>
@@ -1042,10 +1057,10 @@
 
 <footer>
   <div class="shell">
-    <p class="sig">Zusammengestellt aus 122 öffentlichen Repositories — 46 davon mit GitHub&nbsp;Pages live geschaltet.</p>
+    <p class="sig" data-i18n="footerSig">Zusammengestellt aus 122 öffentlichen Repositories — 46 davon mit GitHub&nbsp;Pages live geschaltet.</p>
     <div class="rule"></div>
-    <p>Quelle: <a href="https://github.com/HelmutQualtinger" target="_blank" rel="noopener">github.com/HelmutQualtinger</a></p>
-    <p>Diese Seite ist eine unabhängige Übersicht und keine offizielle Seite des Profils. Alle verlinkten Projekte öffnen in einem neuen Tab.</p>
+    <p><span data-i18n="footerSourceLabel">Quelle:</span> <a href="https://github.com/HelmutQualtinger" target="_blank" rel="noopener">github.com/HelmutQualtinger</a></p>
+    <p data-i18n="footerDisclaimer">Diese Seite ist eine unabhängige Übersicht und keine offizielle Seite des Profils. Alle verlinkten Projekte öffnen in einem neuen Tab.</p>
   </div>
 </footer>
 
@@ -1169,6 +1184,227 @@
   applyTheme(saved);
   themeButtons.forEach(function(btn){
     btn.addEventListener('click', function(){ applyTheme(btn.getAttribute('data-theme-choice')); });
+  });
+
+  /* ---------- Sprachumschalter ---------- */
+  var langButtons = document.querySelectorAll('[data-lang-choice]');
+  var translations = {
+    de: {
+      ariaNav:"Rubriken", ariaBurger:"Rubriken öffnen", ariaThemeGroup:"Farbschema",
+      ariaThemeLight:"Helles Design", ariaThemeDark:"Dunkles Design", ariaThemeSystem:"Systemeinstellung",
+      navHommagen:"Hommagen", navPhysik:"Physik & Chaos", navKarten:"Karten & Daten", navSpiele:"Spiele", navWerkzeuge:"Werkzeuge",
+      sheetHommagen:"Hommagen & Porträts", sheetSpiele:"Spiele & Rätsel", sheetWerkzeuge:"Werkzeuge & Lernen",
+      heroKicker:"46 Projekte. Ein Profil. Live auf GitHub Pages.",
+      heroLede:"Interaktive Fundstücke zwischen Kabarett, Chaostheorie und Kartografie — jedes einzeln veröffentlicht von <strong>@HelmutQualtinger</strong>. Die Wirbelspur im Hintergrund ist kein Muster, sondern ein echtes Doppelpendel in Echtzeit.",
+      heroCtaPrimary:"Kartei durchsehen",
+      heroCtaSecondary:'Profil auf GitHub <span class="chev">›</span>',
+      statRepos:"Repositories", statLive:"mit Pages live", statRubriken:"Rubriken", statStand:"Stand",
+      sectionHommagenH2:"Die Stimmen, die bleiben.", sectionHommagenCount:"4 Projekte",
+      sectionPhysikEyebrow:"Physik, Geometrie & Chaos", sectionPhysikH2:"Wo die Ordnung kippt.", sectionPhysikCount:"10 Projekte",
+      sectionKartenH2:"Die Welt, in Kacheln gelesen.", sectionKartenCount:"12 Projekte",
+      sectionSpieleH2:"Gebaut, um mitzuspielen.", sectionSpieleCount:"8 Projekte",
+      sectionWerkzeugeH2:"Kleine Helfer, große Wirkung.", sectionWerkzeugeCount:"12 Projekte",
+      cardWissenschafter:"Interaktive Profile berühmter Wissenschaftler",
+      cardGoethe:"Interaktive Hommage an Johann Wolfgang von Goethe",
+      cardQualtinger:"Interaktive Hommage an Helmut Qualtinger",
+      cardArtmann:"Interaktive Hommage an H.C. Artmann",
+      cardDodekaeder:"Zwei interaktive 3D-Dodekaeder-Porträtgalerien (Three.js)",
+      cardMuseum3d:"Begehbares 3D-Kunstmuseum, gebaut mit Three.js",
+      cardDoppelpendel:"Chaotisches Doppelpendel — dieselbe Physik, die den Hintergrund oben zeichnet",
+      cardNewtonian:"Newtonscher Teilchenphysik-Simulator in TypeScript",
+      cardPeriodicTable:"Interaktives Periodensystem der Elemente",
+      cardFeigenbaum:"Interaktives Feigenbaum-Bifurkationsdiagramm",
+      cardWolframJS:"Wolframs elementare zelluläre Automaten in JavaScript",
+      cardJsMandelbrot:"Mandelbrot-Mengen-Explorer in JavaScript",
+      cardMaxwell:"Animierte HTML-Slideshow zu Maxwells vier Gleichungen des Elektromagnetismus",
+      cardBilligTanken:"Spritpreis-Tracker für E5 Super 95 in Vorarlberg. Live E-Control-Austria-API, Leaflet-Karte, GPS-Distanzen.",
+      cardSvizzeraMaps:"Interaktive Karte: Einkommen, Lebenserwartung & Geburtenrate der Schweizer Kantone",
+      cardItaliaMaps:"Interaktive Choroplethenkarte: Einkommen, Lebenserwartung und Geburtenrate der italienischen Provinzen",
+      cardAustriaMaps:"Interaktive Karte: Einkommen, Lebenserwartung & Geburtenrate der österreichischen Bezirke",
+      cardKlima:"Klimadaten-Visualisierung",
+      cardGermanyMaps:"Interaktive Karte: Einkommen, Lebenserwartung & Geburtenrate der deutschen Landkreise und kreisfreien Städte",
+      cardUnderrepresentation:"Daten-Visualisierung zu Unterrepräsentation",
+      cardRebsteinBahnhof:"Live SBB Abfahrts-/Ankunftstafel für Rebstein-Marbach (Bahnhofsuhr-Design von Hans Hilfiker)",
+      cardWeatherHistory:"Historische Wetterdaten-Abfrage & interaktives Dashboard",
+      cardWetterVorschau:"72-Stunden- & 14-Tage-Wettervorhersage-App mit Geolokalisierung",
+      cardWetterSymbol:"Bibliothek für Wettersymbole",
+      cardHanoi:"Türme von Hanoi",
+      cardMordraten:"Wer war's? Ein Detektiv-Ratespiel",
+      cardRubik:"Rubik's Cube im Browser",
+      cardRubikGoogle:"Rubik's Cube — zweite Variante",
+      cardMahjong:"Mahjong-Solitär im Browser",
+      cardSpaceInvader:"Browser-basiertes Space Invaders im Arcade-Stil — Pixelgrafiken, klassisches HUD, CRT-Effekt",
+      cardSudoku:"Sudoku im Browser",
+      cardLifeJS:"Conways Spiel des Lebens in JavaScript",
+      cardTraining:"Übungs- und Trainingsanwendung",
+      cardLanguageCards:"Vokabelkarten zum Sprachenlernen",
+      cardBoycott:"Interaktives Web-Tool",
+      cardWienerSchule:"Lernanwendung mit Wien-Bezug",
+      cardApache:"Docker-Konfiguration für Apache-Webserver",
+      cardWattRechner:"Watt-Rechner fürs Fahrrad",
+      cardLynnIQ:"IQ- & Statistik-Visualisierung",
+      cardWebradio:"Webradio-Player",
+      cardSortVis:"Visualisierung von Sortieralgorithmen",
+      cardZaehlen:"Interaktive Lern-App für Zählen und Zahlen",
+      cardKISlides:"Präsentationsfolien zu KI / Künstlicher Intelligenz",
+      cardQrGenerator:"Web-App zum Generieren von QR-Codes",
+      footerSig:"Zusammengestellt aus 122 öffentlichen Repositories — 46 davon mit GitHub Pages live geschaltet.",
+      footerSourceLabel:"Quelle:",
+      footerDisclaimer:"Diese Seite ist eine unabhängige Übersicht und keine offizielle Seite des Profils. Alle verlinkten Projekte öffnen in einem neuen Tab."
+    },
+    en: {
+      ariaNav:"Sections", ariaBurger:"Open sections", ariaThemeGroup:"Color scheme",
+      ariaThemeLight:"Light mode", ariaThemeDark:"Dark mode", ariaThemeSystem:"System setting",
+      navHommagen:"Tributes", navPhysik:"Physics & Chaos", navKarten:"Maps & Data", navSpiele:"Games", navWerkzeuge:"Tools",
+      sheetHommagen:"Tributes & Portraits", sheetSpiele:"Games & Puzzles", sheetWerkzeuge:"Tools & Learning",
+      heroKicker:"46 projects. One profile. Live on GitHub Pages.",
+      heroLede:"Interactive finds between cabaret, chaos theory and cartography — each individually published by <strong>@HelmutQualtinger</strong>. The swirling trail in the background isn't a pattern, it's a real double pendulum in real time.",
+      heroCtaPrimary:"Browse the collection",
+      heroCtaSecondary:'GitHub profile <span class="chev">›</span>',
+      statRepos:"Repositories", statLive:"live with Pages", statRubriken:"Categories", statStand:"As of",
+      sectionHommagenH2:"The voices that remain.", sectionHommagenCount:"4 projects",
+      sectionPhysikEyebrow:"Physics, Geometry & Chaos", sectionPhysikH2:"Where order tips over.", sectionPhysikCount:"10 projects",
+      sectionKartenH2:"The world, read in tiles.", sectionKartenCount:"12 projects",
+      sectionSpieleH2:"Built to be played.", sectionSpieleCount:"8 projects",
+      sectionWerkzeugeH2:"Small helpers, big impact.", sectionWerkzeugeCount:"12 projects",
+      cardWissenschafter:"Interactive profiles of famous scientists",
+      cardGoethe:"Interactive tribute to Johann Wolfgang von Goethe",
+      cardQualtinger:"Interactive tribute to Helmut Qualtinger",
+      cardArtmann:"Interactive tribute to H.C. Artmann",
+      cardDodekaeder:"Two interactive 3D dodecahedron portrait galleries (Three.js)",
+      cardMuseum3d:"A walkable 3D art museum built with Three.js",
+      cardDoppelpendel:"Chaotic double pendulum — the same physics drawing the background above",
+      cardNewtonian:"Newtonian particle physics simulator in TypeScript",
+      cardPeriodicTable:"Interactive periodic table of elements",
+      cardFeigenbaum:"Interactive Feigenbaum bifurcation diagram",
+      cardWolframJS:"Wolfram elementary cellular automata in JavaScript",
+      cardJsMandelbrot:"Mandelbrot set explorer in JavaScript",
+      cardMaxwell:"Animated HTML slideshow explaining Maxwell's four equations of electromagnetism",
+      cardBilligTanken:"E5 Super 95 fuel price tracker for Vorarlberg. Live E-Control Austria API, Leaflet map, GPS distances.",
+      cardSvizzeraMaps:"Interactive map: income, life expectancy & birth rate of Swiss cantons",
+      cardItaliaMaps:"Interactive choropleth map: income, life expectancy and birth rate of Italian provinces",
+      cardAustriaMaps:"Interactive map: income, life expectancy & birth rate of Austrian districts",
+      cardKlima:"Climate data visualization",
+      cardGermanyMaps:"Interactive map: income, life expectancy & birth rate of German districts and independent cities",
+      cardUnderrepresentation:"Data visualization on underrepresentation",
+      cardRebsteinBahnhof:"Live SBB departure/arrival board for Rebstein-Marbach (station clock design by Hans Hilfiker)",
+      cardWeatherHistory:"Historical weather data fetcher & interactive dashboard",
+      cardWetterVorschau:"72h & 14-day weather forecast app with geolocation",
+      cardWetterSymbol:"Weather icon and symbol library",
+      cardHanoi:"Towers of Hanoi",
+      cardMordraten:"Whodunit? A detective guessing game",
+      cardRubik:"Rubik's Cube in the browser",
+      cardRubikGoogle:"Rubik's Cube — second variant",
+      cardMahjong:"Mahjong Solitaire in the browser",
+      cardSpaceInvader:"Browser-based Space Invaders in arcade style — pixel graphics, classic HUD, CRT effect",
+      cardSudoku:"Sudoku in the browser",
+      cardLifeJS:"Conway's Game of Life in JavaScript",
+      cardTraining:"Practice and training application",
+      cardLanguageCards:"Vocabulary flashcards for language learning",
+      cardBoycott:"Interactive web tool",
+      cardWienerSchule:"Learning app with a Vienna focus",
+      cardApache:"Apache web server Docker configuration",
+      cardWattRechner:"Watt calculator for cycling",
+      cardLynnIQ:"IQ & statistics visualization",
+      cardWebradio:"Web radio player",
+      cardSortVis:"Sorting algorithm visualizer",
+      cardZaehlen:"Interactive counting and numbers learning app",
+      cardKISlides:"AI / Artificial Intelligence presentation slides",
+      cardQrGenerator:"QR code generator web app",
+      footerSig:"Compiled from 122 public repositories — 46 of them live on GitHub Pages.",
+      footerSourceLabel:"Source:",
+      footerDisclaimer:"This page is an independent overview and not an official page of the profile. All linked projects open in a new tab."
+    },
+    it: {
+      ariaNav:"Sezioni", ariaBurger:"Apri sezioni", ariaThemeGroup:"Schema colori",
+      ariaThemeLight:"Modalità chiara", ariaThemeDark:"Modalità scura", ariaThemeSystem:"Impostazione di sistema",
+      navHommagen:"Omaggi", navPhysik:"Fisica & Caos", navKarten:"Mappe & Dati", navSpiele:"Giochi", navWerkzeuge:"Strumenti",
+      sheetHommagen:"Omaggi & Ritratti", sheetSpiele:"Giochi & Rompicapi", sheetWerkzeuge:"Strumenti & Apprendimento",
+      heroKicker:"46 progetti. Un profilo. Live su GitHub Pages.",
+      heroLede:"Trovate interattive tra cabaret, teoria del caos e cartografia — ciascuna pubblicata singolarmente da <strong>@HelmutQualtinger</strong>. La traccia vorticosa sullo sfondo non è un motivo grafico, ma un vero pendolo doppio in tempo reale.",
+      heroCtaPrimary:"Sfoglia la raccolta",
+      heroCtaSecondary:'Profilo su GitHub <span class="chev">›</span>',
+      statRepos:"Repository", statLive:"live con Pages", statRubriken:"Categorie", statStand:"Aggiornato al",
+      sectionHommagenH2:"Le voci che restano.", sectionHommagenCount:"4 progetti",
+      sectionPhysikEyebrow:"Fisica, Geometria & Caos", sectionPhysikH2:"Dove l'ordine si ribalta.", sectionPhysikCount:"10 progetti",
+      sectionKartenH2:"Il mondo, letto a tessere.", sectionKartenCount:"12 progetti",
+      sectionSpieleH2:"Costruiti per giocarci.", sectionSpieleCount:"8 progetti",
+      sectionWerkzeugeH2:"Piccoli aiuti, grande effetto.", sectionWerkzeugeCount:"12 progetti",
+      cardWissenschafter:"Profili interattivi di scienziati famosi",
+      cardGoethe:"Omaggio interattivo a Johann Wolfgang von Goethe",
+      cardQualtinger:"Omaggio interattivo a Helmut Qualtinger",
+      cardArtmann:"Omaggio interattivo a H.C. Artmann",
+      cardDodekaeder:"Due gallerie di ritratti 3D interattive a forma di dodecaedro (Three.js)",
+      cardMuseum3d:"Un museo d'arte 3D visitabile, realizzato con Three.js",
+      cardDoppelpendel:"Pendolo doppio caotico — la stessa fisica che disegna lo sfondo qui sopra",
+      cardNewtonian:"Simulatore di fisica delle particelle newtoniana in TypeScript",
+      cardPeriodicTable:"Tavola periodica interattiva degli elementi",
+      cardFeigenbaum:"Diagramma di biforcazione di Feigenbaum interattivo",
+      cardWolframJS:"Automi cellulari elementari di Wolfram in JavaScript",
+      cardJsMandelbrot:"Esploratore dell'insieme di Mandelbrot in JavaScript",
+      cardMaxwell:"Presentazione HTML animata sulle quattro equazioni di Maxwell dell'elettromagnetismo",
+      cardBilligTanken:"Tracker dei prezzi del carburante E5 Super 95 per il Vorarlberg. API E-Control Austria in tempo reale, mappa Leaflet, distanze GPS.",
+      cardSvizzeraMaps:"Mappa interattiva: reddito, aspettativa di vita e tasso di natalità dei cantoni svizzeri",
+      cardItaliaMaps:"Mappa coropletica interattiva: reddito, aspettativa di vita e tasso di natalità delle province italiane",
+      cardAustriaMaps:"Mappa interattiva: reddito, aspettativa di vita e tasso di natalità dei distretti austriaci",
+      cardKlima:"Visualizzazione di dati climatici",
+      cardGermanyMaps:"Mappa interattiva: reddito, aspettativa di vita e tasso di natalità dei distretti e delle città extra-circondariali tedesche",
+      cardUnderrepresentation:"Visualizzazione di dati sulla sottorappresentazione",
+      cardRebsteinBahnhof:"Tabellone partenze/arrivi SBB in tempo reale per Rebstein-Marbach (design dell'orologio ferroviario di Hans Hilfiker)",
+      cardWeatherHistory:"Recupero di dati meteo storici e dashboard interattiva",
+      cardWetterVorschau:"App di previsioni meteo a 72 ore e 14 giorni con geolocalizzazione",
+      cardWetterSymbol:"Libreria di icone e simboli meteo",
+      cardHanoi:"Torri di Hanoi",
+      cardMordraten:"Chi è stato? Un gioco investigativo a indovinelli",
+      cardRubik:"Cubo di Rubik nel browser",
+      cardRubikGoogle:"Cubo di Rubik — seconda variante",
+      cardMahjong:"Mahjong Solitario nel browser",
+      cardSpaceInvader:"Space Invaders in stile arcade nel browser — grafica a pixel, HUD classico, effetto CRT",
+      cardSudoku:"Sudoku nel browser",
+      cardLifeJS:"Il gioco della vita di Conway in JavaScript",
+      cardTraining:"Applicazione di esercizio e allenamento",
+      cardLanguageCards:"Flashcard di vocabolario per l'apprendimento delle lingue",
+      cardBoycott:"Strumento web interattivo",
+      cardWienerSchule:"App didattica dedicata a Vienna",
+      cardApache:"Configurazione Docker per server web Apache",
+      cardWattRechner:"Calcolatore di watt per la bicicletta",
+      cardLynnIQ:"Visualizzazione di QI e statistiche",
+      cardWebradio:"Player di radio web",
+      cardSortVis:"Visualizzatore di algoritmi di ordinamento",
+      cardZaehlen:"App interattiva per imparare a contare e i numeri",
+      cardKISlides:"Diapositive di presentazione su IA / Intelligenza Artificiale",
+      cardQrGenerator:"App web per generare codici QR",
+      footerSig:"Raccolta da 122 repository pubblici — 46 dei quali pubblicati su GitHub Pages.",
+      footerSourceLabel:"Fonte:",
+      footerDisclaimer:"Questa pagina è una panoramica indipendente e non una pagina ufficiale del profilo. Tutti i progetti collegati si aprono in una nuova scheda."
+    }
+  };
+  function applyLang(lang){
+    if(!translations[lang]) lang = 'de';
+    document.documentElement.setAttribute('lang', lang);
+    var dict = translations[lang];
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if(dict[key] !== undefined) el.textContent = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(function(el){
+      var key = el.getAttribute('data-i18n-html');
+      if(dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-attr-aria-label]').forEach(function(el){
+      var key = el.getAttribute('data-i18n-attr-aria-label');
+      if(dict[key] !== undefined) el.setAttribute('aria-label', dict[key]);
+    });
+    langButtons.forEach(function(btn){
+      btn.setAttribute('aria-pressed', String(btn.getAttribute('data-lang-choice') === lang));
+    });
+    try{ localStorage.setItem('kartei-lang', lang); }catch(e){}
+  }
+  var savedLang = 'de';
+  try{ savedLang = localStorage.getItem('kartei-lang') || 'de'; }catch(e){}
+  applyLang(savedLang);
+  langButtons.forEach(function(btn){
+    btn.addEventListener('click', function(){ applyLang(btn.getAttribute('data-lang-choice')); });
   });
 
   var pending = Array.prototype.slice.call(document.querySelectorAll('.card'));
