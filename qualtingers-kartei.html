@@ -690,6 +690,10 @@
   <rect x="9" y="13" width="5" height="5"/>
   <rect x="14" y="13" width="5" height="5"/>
 </g>
+<g id="i-camera" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 8a2 2 0 0 1 2-2h1.5l1-2h7l1 2H18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8z"/>
+  <circle cx="12" cy="13" r="3.5"/>
+</g>
 </defs>
 </svg>
 
@@ -702,6 +706,7 @@
       <a href="#physik" data-i18n="navPhysik">Physik &amp; Chaos</a>
       <a href="#karten" data-i18n="navKarten">Karten &amp; Daten</a>
       <a href="#spiele" data-i18n="navSpiele">Spiele</a>
+      <a href="#webcams" data-i18n="navWebcams">Webcams</a>
     </div>
     <button class="burger" id="sheetToggle" aria-label="Rubriken öffnen" aria-expanded="false" aria-controls="sheet" data-i18n-attr-aria-label="ariaBurger">
       <svg viewBox="0 0 24 24"><use href="#i-menu"/></svg>
@@ -728,13 +733,14 @@
     <a href="#physik"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-atom"/></svg></span><span data-i18n="navPhysik">Physik &amp; Chaos</span></a>
     <a href="#karten"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></span><span data-i18n="navKarten">Karten &amp; Daten</span></a>
     <a href="#spiele"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-dice"/></svg></span><span data-i18n="sheetSpiele">Spiele &amp; Rätsel</span></a>
+    <a href="#webcams"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-camera"/></svg></span><span data-i18n="sheetWebcams">Webcams &amp; Live-Blicke</span></a>
   </div>
 </div>
 
 <header class="hero" id="top">
   <canvas id="pendulumCanvas" aria-hidden="true"></canvas>
   <div class="hero-inner">
-    <p class="kicker" data-i18n="heroKicker">51 Projekte. Ein Profil. Live auf GitHub Pages.</p>
+    <p class="kicker" data-i18n="heroKicker">54 Projekte. Ein Profil. Live auf GitHub Pages.</p>
     <h1 class="title">Qualtingers Kartei</h1>
     <p class="lede" data-i18n-html="heroLede">Interaktive Fundstücke zwischen Kabarett, Chaostheorie und Kartografie — jedes einzeln veröffentlicht von <strong>@HelmutQualtinger</strong>. Die Wirbelspur im Hintergrund ist kein Muster, sondern ein echtes Doppelpendel in Echtzeit.</p>
     <div class="cta-row">
@@ -743,8 +749,8 @@
     </div>
     <div class="hero-stats">
       <div><b>122</b><span data-i18n="statRepos">Repositories</span></div>
-      <div><b>51</b><span data-i18n="statLive">mit Pages live</span></div>
-      <div><b>5</b><span data-i18n="statRubriken">Rubriken</span></div>
+      <div><b>54</b><span data-i18n="statLive">mit Pages live</span></div>
+      <div><b>6</b><span data-i18n="statRubriken">Rubriken</span></div>
       <div><b>07.09.26</b><span data-i18n="statStand">Stand</span></div>
     </div>
   </div>
@@ -1108,6 +1114,34 @@
         </div>
       </section>
 
+      <section id="webcams">
+        <div class="section-head">
+          <p class="eyebrow"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-camera"/></svg></span><span data-i18n="sheetWebcams">Webcams &amp; Live-Blicke</span></p>
+          <h2 data-i18n="sectionWebcamsH2">Der Blick nach draußen.</h2>
+          <span class="count" data-i18n="sectionWebcamsCount">3 Projekte</span>
+        </div>
+        <div class="grid">
+          <a class="card" href="https://webtvfc.feratel.com/webtv/?design=v5&amp;pg=DA7D2F22-8600-464D-9D4F-CDB04014A6C5&amp;cam=4260" target="_blank" rel="noopener">
+            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-camera"/></svg></span><span class="go">↗</span></div>
+            <h3>Hoher Kasten</h3>
+            <p data-i18n="cardHoherKasten">Live-Webcam auf den Hohen Kasten im Alpstein</p>
+            <div class="card-foot"><span><span class="lang-dot"></span>Live-Video</span><span>Sep 2026</span></div>
+          </a>
+          <a class="card" href="https://saentis.roundshot.com/" target="_blank" rel="noopener">
+            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-camera"/></svg></span><span class="go">↗</span></div>
+            <h3>Säntis</h3>
+            <p data-i18n="cardSaentis">360°-Panorama-Livecam auf dem Säntis</p>
+            <div class="card-foot"><span><span class="lang-dot"></span>Live-Video</span><span>Sep 2026</span></div>
+          </a>
+          <a class="card" href="https://player.kinomap.com/zvrc84" target="_blank" rel="noopener">
+            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-bike"/></svg></span><span class="go">↗</span></div>
+            <h3>Kinomap Bodensee-Tour</h3>
+            <p data-i18n="cardKinomapBodensee">Kinomap-Videofahrt: Radtour vom Bodensee bei Bregenz nach Dornbirn</p>
+            <div class="card-foot"><span><span class="lang-dot"></span>Video</span><span>Sep 2026</span></div>
+          </a>
+        </div>
+      </section>
+
 </main>
 
 <footer>
@@ -1247,9 +1281,9 @@
     de: {
       ariaNav:"Rubriken", ariaBurger:"Rubriken öffnen", ariaThemeGroup:"Farbschema",
       ariaThemeLight:"Helles Design", ariaThemeDark:"Dunkles Design", ariaThemeSystem:"Systemeinstellung",
-      navHommagen:"Hommagen", navPhysik:"Physik & Chaos", navKarten:"Karten & Daten", navSpiele:"Spiele", navWerkzeuge:"Werkzeuge",
+      navHommagen:"Hommagen", navPhysik:"Physik & Chaos", navKarten:"Karten & Daten", navSpiele:"Spiele", navWerkzeuge:"Werkzeuge", navWebcams:"Webcams",
       sheetHommagen:"Hommagen & Porträts", sheetSpiele:"Spiele & Rätsel", sheetWerkzeuge:"Werkzeuge & Lernen",
-      heroKicker:"51 Projekte. Ein Profil. Live auf GitHub Pages.",
+      heroKicker:"54 Projekte. Ein Profil. Live auf GitHub Pages.",
       heroLede:"Interaktive Fundstücke zwischen Kabarett, Chaostheorie und Kartografie — jedes einzeln veröffentlicht von <strong>@HelmutQualtinger</strong>. Die Wirbelspur im Hintergrund ist kein Muster, sondern ein echtes Doppelpendel in Echtzeit.",
       heroCtaPrimary:"Kartei durchsehen",
       heroCtaSecondary:'Profil auf GitHub <span class="chev">›</span>',
@@ -1258,6 +1292,7 @@
       sectionPhysikEyebrow:"Physik, Geometrie & Chaos", sectionPhysikH2:"Wo die Ordnung kippt.", sectionPhysikCount:"12 Projekte",
       sectionKartenH2:"Die Welt, in Kacheln gelesen.", sectionKartenCount:"8 Projekte",
       sectionSpieleH2:"Gebaut, um mitzuspielen.", sectionSpieleCount:"12 Projekte",
+      sheetWebcams:"Webcams & Live-Blicke", sectionWebcamsH2:"Der Blick nach draußen.", sectionWebcamsCount:"3 Projekte",
       sectionWerkzeugeH2:"Kleine Helfer, große Wirkung.", sectionWerkzeugeCount:"12 Projekte",
       cardWissenschafter:"Interaktive Profile berühmter Wissenschaftler",
       cardGoethe:"Interaktive Hommage an Johann Wolfgang von Goethe",
@@ -1306,18 +1341,21 @@
       cardChess:"3D-Schach gegen die Stockfish-Engine, containerisiert mit Docker",
       cardTetris:"Tetris in TypeScript, containerisiert mit Docker",
       cardShithead:"Browserbasiertes Multiplayer-Kartenspiel Shithead — ohne Installation, ohne Konto, nur ein Raumcode",
+      cardHoherKasten:"Live-Webcam auf den Hohen Kasten im Alpstein",
+      cardSaentis:"360°-Panorama-Livecam auf dem Säntis",
+      cardKinomapBodensee:"Kinomap-Videofahrt: Radtour vom Bodensee bei Bregenz nach Dornbirn",
       cardKISlides:"Präsentationsfolien zu KI / Künstlicher Intelligenz",
       cardQrGenerator:"Web-App zum Generieren von QR-Codes",
-      footerSig:"Zusammengestellt aus 122 öffentlichen Repositories — 51 davon mit GitHub Pages live geschaltet.",
+      footerSig:"Zusammengestellt aus 122 öffentlichen Repositories — 54 davon mit GitHub Pages live geschaltet.",
       footerSourceLabel:"Quelle:",
       footerDisclaimer:"Diese Seite ist eine unabhängige Übersicht und keine offizielle Seite des Profils. Alle verlinkten Projekte öffnen in einem neuen Tab."
     },
     en: {
       ariaNav:"Sections", ariaBurger:"Open sections", ariaThemeGroup:"Color scheme",
       ariaThemeLight:"Light mode", ariaThemeDark:"Dark mode", ariaThemeSystem:"System setting",
-      navHommagen:"Tributes", navPhysik:"Physics & Chaos", navKarten:"Maps & Data", navSpiele:"Games", navWerkzeuge:"Tools",
+      navHommagen:"Tributes", navPhysik:"Physics & Chaos", navKarten:"Maps & Data", navSpiele:"Games", navWerkzeuge:"Tools", navWebcams:"Webcams",
       sheetHommagen:"Tributes & Portraits", sheetSpiele:"Games & Puzzles", sheetWerkzeuge:"Tools & Learning",
-      heroKicker:"51 projects. One profile. Live on GitHub Pages.",
+      heroKicker:"54 projects. One profile. Live on GitHub Pages.",
       heroLede:"Interactive finds between cabaret, chaos theory and cartography — each individually published by <strong>@HelmutQualtinger</strong>. The swirling trail in the background isn't a pattern, it's a real double pendulum in real time.",
       heroCtaPrimary:"Browse the collection",
       heroCtaSecondary:'GitHub profile <span class="chev">›</span>',
@@ -1326,6 +1364,7 @@
       sectionPhysikEyebrow:"Physics, Geometry & Chaos", sectionPhysikH2:"Where order tips over.", sectionPhysikCount:"12 projects",
       sectionKartenH2:"The world, read in tiles.", sectionKartenCount:"8 projects",
       sectionSpieleH2:"Built to be played.", sectionSpieleCount:"12 projects",
+      sheetWebcams:"Webcams & Live Views", sectionWebcamsH2:"The view outside.", sectionWebcamsCount:"3 projects",
       sectionWerkzeugeH2:"Small helpers, big impact.", sectionWerkzeugeCount:"12 projects",
       cardWissenschafter:"Interactive profiles of famous scientists",
       cardGoethe:"Interactive tribute to Johann Wolfgang von Goethe",
@@ -1374,18 +1413,21 @@
       cardChess:"3D chess against the Stockfish engine, containerized with Docker",
       cardTetris:"Tetris in TypeScript, containerized with Docker",
       cardShithead:"Browser-based multiplayer card game Shithead — no install, no account, just a room code",
+      cardHoherKasten:"Live webcam on the Hoher Kasten in the Alpstein range",
+      cardSaentis:"360° panorama live cam on the Säntis",
+      cardKinomapBodensee:"Kinomap video ride: bike tour from Lake Constance near Bregenz to Dornbirn",
       cardKISlides:"AI / Artificial Intelligence presentation slides",
       cardQrGenerator:"QR code generator web app",
-      footerSig:"Compiled from 122 public repositories — 51 of them live on GitHub Pages.",
+      footerSig:"Compiled from 122 public repositories — 54 of them live on GitHub Pages.",
       footerSourceLabel:"Source:",
       footerDisclaimer:"This page is an independent overview and not an official page of the profile. All linked projects open in a new tab."
     },
     it: {
       ariaNav:"Sezioni", ariaBurger:"Apri sezioni", ariaThemeGroup:"Schema colori",
       ariaThemeLight:"Modalità chiara", ariaThemeDark:"Modalità scura", ariaThemeSystem:"Impostazione di sistema",
-      navHommagen:"Omaggi", navPhysik:"Fisica & Caos", navKarten:"Mappe & Dati", navSpiele:"Giochi", navWerkzeuge:"Strumenti",
+      navHommagen:"Omaggi", navPhysik:"Fisica & Caos", navKarten:"Mappe & Dati", navSpiele:"Giochi", navWerkzeuge:"Strumenti", navWebcams:"Webcam",
       sheetHommagen:"Omaggi & Ritratti", sheetSpiele:"Giochi & Rompicapi", sheetWerkzeuge:"Strumenti & Apprendimento",
-      heroKicker:"51 progetti. Un profilo. Live su GitHub Pages.",
+      heroKicker:"54 progetti. Un profilo. Live su GitHub Pages.",
       heroLede:"Trovate interattive tra cabaret, teoria del caos e cartografia — ciascuna pubblicata singolarmente da <strong>@HelmutQualtinger</strong>. La traccia vorticosa sullo sfondo non è un motivo grafico, ma un vero pendolo doppio in tempo reale.",
       heroCtaPrimary:"Sfoglia la raccolta",
       heroCtaSecondary:'Profilo su GitHub <span class="chev">›</span>',
@@ -1394,6 +1436,7 @@
       sectionPhysikEyebrow:"Fisica, Geometria & Caos", sectionPhysikH2:"Dove l'ordine si ribalta.", sectionPhysikCount:"12 progetti",
       sectionKartenH2:"Il mondo, letto a tessere.", sectionKartenCount:"8 progetti",
       sectionSpieleH2:"Costruiti per giocarci.", sectionSpieleCount:"12 progetti",
+      sheetWebcams:"Webcam & sguardi dal vivo", sectionWebcamsH2:"Lo sguardo verso fuori.", sectionWebcamsCount:"3 progetti",
       sectionWerkzeugeH2:"Piccoli aiuti, grande effetto.", sectionWerkzeugeCount:"12 progetti",
       cardWissenschafter:"Profili interattivi di scienziati famosi",
       cardGoethe:"Omaggio interattivo a Johann Wolfgang von Goethe",
@@ -1442,9 +1485,12 @@
       cardChess:"Scacchi 3D contro il motore Stockfish, containerizzato con Docker",
       cardTetris:"Tetris in TypeScript, containerizzato con Docker",
       cardShithead:"Gioco di carte multiplayer Shithead nel browser — senza installazione, senza account, solo un codice stanza",
+      cardHoherKasten:"Webcam dal vivo sull'Hoher Kasten nel massiccio dell'Alpstein",
+      cardSaentis:"Webcam panoramica a 360° sul Säntis",
+      cardKinomapBodensee:"Video Kinomap: tour in bicicletta dal Lago di Costanza presso Bregenz a Dornbirn",
       cardKISlides:"Diapositive di presentazione su IA / Intelligenza Artificiale",
       cardQrGenerator:"App web per generare codici QR",
-      footerSig:"Raccolta da 122 repository pubblici — 51 dei quali pubblicati su GitHub Pages.",
+      footerSig:"Raccolta da 122 repository pubblici — 54 dei quali pubblicati su GitHub Pages.",
       footerSourceLabel:"Fonte:",
       footerDisclaimer:"Questa pagina è una panoramica indipendente e non una pagina ufficiale del profilo. Tutti i progetti collegati si aprono in una nuova scheda."
     }
