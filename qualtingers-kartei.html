@@ -357,6 +357,22 @@
     vertical-align:-1px;
   }
 
+  /* ---------- WEBCAM FRAMES ---------- */
+  .grid-webcams{grid-template-columns:repeat(auto-fill,minmax(340px,1fr));}
+  .card-frame{cursor:default;}
+  .card-frame .go{
+    color:var(--ink-faint); transition:color .25s ease;
+  }
+  .card-frame .go:hover{color:var(--accent);}
+  .card-frame:hover{transform:none; box-shadow:var(--elev);}
+  .frame-wrap{
+    position:relative; width:100%; padding-top:56.25%;
+    border-radius:14px; overflow:hidden; background:var(--bg-alt);
+  }
+  .frame-wrap iframe{
+    position:absolute; inset:0; width:100%; height:100%; border:0;
+  }
+
   /* ---------- SHEET (mobile nav) ---------- */
   .backdrop{
     position:fixed; inset:0; z-index:44;
@@ -1120,25 +1136,28 @@
           <h2 data-i18n="sectionWebcamsH2">Der Blick nach draußen.</h2>
           <span class="count" data-i18n="sectionWebcamsCount">3 Projekte</span>
         </div>
-        <div class="grid">
-          <a class="card" href="https://webtvfc.feratel.com/webtv/?design=v5&amp;pg=DA7D2F22-8600-464D-9D4F-CDB04014A6C5&amp;cam=4260" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-camera"/></svg></span><span class="go">↗</span></div>
+        <div class="grid grid-webcams">
+          <div class="card card-frame">
+            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-camera"/></svg></span><a class="go" href="https://webtvfc.feratel.com/webtv/?design=v5&amp;pg=DA7D2F22-8600-464D-9D4F-CDB04014A6C5&amp;cam=4260" target="_blank" rel="noopener">↗</a></div>
             <h3>Hoher Kasten</h3>
             <p data-i18n="cardHoherKasten">Live-Webcam auf den Hohen Kasten im Alpstein</p>
+            <div class="frame-wrap"><iframe src="https://webtvfc.feratel.com/webtv/?design=v5&amp;pg=DA7D2F22-8600-464D-9D4F-CDB04014A6C5&amp;cam=4260" title="Hoher Kasten Webcam" loading="lazy" allowfullscreen></iframe></div>
             <div class="card-foot"><span><span class="lang-dot"></span>Live-Video</span><span>Sep 2026</span></div>
-          </a>
-          <a class="card" href="https://saentis.roundshot.com/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-camera"/></svg></span><span class="go">↗</span></div>
+          </div>
+          <div class="card card-frame">
+            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-camera"/></svg></span><a class="go" href="https://saentis.roundshot.com/" target="_blank" rel="noopener">↗</a></div>
             <h3>Säntis</h3>
             <p data-i18n="cardSaentis">360°-Panorama-Livecam auf dem Säntis</p>
+            <div class="frame-wrap"><iframe src="https://saentis.roundshot.com/" title="Säntis 360° Panorama Webcam" loading="lazy" allowfullscreen></iframe></div>
             <div class="card-foot"><span><span class="lang-dot"></span>Live-Video</span><span>Sep 2026</span></div>
-          </a>
-          <a class="card" href="https://player.kinomap.com/zvrc84" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-bike"/></svg></span><span class="go">↗</span></div>
+          </div>
+          <div class="card card-frame">
+            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-bike"/></svg></span><a class="go" href="https://player.kinomap.com/zvrc84" target="_blank" rel="noopener">↗</a></div>
             <h3>Kinomap Bodensee-Tour</h3>
             <p data-i18n="cardKinomapBodensee">Kinomap-Videofahrt: Radtour vom Bodensee bei Bregenz nach Dornbirn</p>
+            <div class="frame-wrap"><iframe src="https://player.kinomap.com/zvrc84" title="Radtour vom Bodensee nach Dornbirn" loading="lazy" allowfullscreen></iframe></div>
             <div class="card-foot"><span><span class="lang-dot"></span>Video</span><span>Sep 2026</span></div>
-          </a>
+          </div>
         </div>
       </section>
 
