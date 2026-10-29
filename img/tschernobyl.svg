@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" font-family="Arial Black, Impact, sans-serif" font-weight="900" text-anchor="middle">
+  <defs>
+    <linearGradient id="paint" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5b6648"/><stop offset="1" stop-color="#3a4230"/>
+    </linearGradient>
+    <radialGradient id="dial" cx=".45" cy=".4" r=".65">
+      <stop offset="0" stop-color="#fff4d6"/><stop offset=".8" stop-color="#e9d7a8"/><stop offset="1" stop-color="#b9a272"/>
+    </radialGradient>
+    <linearGradient id="bezel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d7dbd0"/><stop offset=".5" stop-color="#7b8071"/><stop offset="1" stop-color="#2c2f27"/>
+    </linearGradient>
+    <radialGradient id="btn" cx=".4" cy=".35" r=".7">
+      <stop offset="0" stop-color="#ff8a70"/><stop offset=".5" stop-color="#e3261b"/><stop offset="1" stop-color="#7d0d07"/>
+    </radialGradient>
+    <radialGradient id="lampR" cx=".4" cy=".35" r=".6"><stop offset="0" stop-color="#fff0d8"/><stop offset=".4" stop-color="#ff4a2e"/><stop offset="1" stop-color="#8a1308"/></radialGradient>
+    <radialGradient id="lampG" cx=".4" cy=".35" r=".6"><stop offset="0" stop-color="#eaffef"/><stop offset=".4" stop-color="#3fe070"/><stop offset="1" stop-color="#0e5a25"/></radialGradient>
+    <radialGradient id="lampA" cx=".4" cy=".35" r=".6"><stop offset="0" stop-color="#fff6dc"/><stop offset=".4" stop-color="#ffb23a"/><stop offset="1" stop-color="#7a4a00"/></radialGradient>
+    <symbol id="gauge" viewBox="-20 -20 40 40">
+      <circle r="19" fill="url(#bezel)"/>
+      <circle r="15.5" fill="url(#dial)" stroke="#222" stroke-width=".6"/>
+      <path d="M-11 6A12.5 12.5 0 1 1 11 6" fill="none" stroke="#222" stroke-width=".8"/>
+      <path d="M6.5 9A12.5 12.5 0 0 0 11 6" fill="none" stroke="#d01f10" stroke-width="2.2"/>
+      <g stroke="#222" stroke-width="1"><path d="M-10.8 6.2l-2 1.2M-12.5 0h-2.3M-10.8-6.2l-2-1.2M-6.2-10.8l-1.2-2M0-12.5v-2.3M6.2-10.8l1.2-2M10.8-6.2l2-1.2M12.5 0h2.3"/></g>
+    </symbol>
+  </defs>
+  <rect width="120" height="120" fill="url(#paint)"/>
+  <!-- riveted panel seams -->
+  <path d="M0 60h120M60 0v60" stroke="#262b1f" stroke-width="1.4"/>
+  <path d="M0 61h120M61 0v60" stroke="#ffffff1f" stroke-width=".8"/>
+  <g fill="#2a2f22" stroke="#8a9476" stroke-width=".5">
+    <circle cx="5" cy="5" r="1.6"/><circle cx="55" cy="5" r="1.6"/><circle cx="65" cy="5" r="1.6"/><circle cx="115" cy="5" r="1.6"/>
+    <circle cx="5" cy="55" r="1.6"/><circle cx="55" cy="55" r="1.6"/><circle cx="65" cy="55" r="1.6"/><circle cx="115" cy="55" r="1.6"/>
+    <circle cx="5" cy="66" r="1.6"/><circle cx="115" cy="66" r="1.6"/><circle cx="5" cy="115" r="1.6"/><circle cx="115" cy="115" r="1.6"/>
+  </g>
+  <!-- two gauges -->
+  <use href="#gauge" x="9" y="9" width="42" height="42"/>
+  <path d="M30 30l-7-8" stroke="#111" stroke-width="1.8" stroke-linecap="round"/><circle cx="30" cy="30" r="2" fill="#111"/>
+  <use href="#gauge" x="69" y="9" width="42" height="42"/>
+  <path d="M90 30l9-4" stroke="#111" stroke-width="1.8" stroke-linecap="round"/><circle cx="90" cy="30" r="2" fill="#111"/>
+  <!-- engraved label plates -->
+  <rect x="13" y="48" width="34" height="7" rx="1" fill="#1d2118"/>
+  <text x="30" y="53.8" font-size="5" fill="#e4dfc4">МОЩНОСТЬ</text>
+  <rect x="73" y="48" width="34" height="7" rx="1" fill="#1d2118"/>
+  <text x="90" y="53.8" font-size="5" fill="#e4dfc4">РЕАКТОР</text>
+  <!-- amber digital readout -->
+  <rect x="9" y="68" width="58" height="18" rx="2" fill="#120d05" stroke="#0a0a08" stroke-width="1"/>
+  <text x="38" y="82.5" font-size="13" fill="#ffb23a" font-family="Courier New, monospace" font-weight="700">3.20 кВт</text>
+  <!-- indicator lamps -->
+  <g stroke="#1b1f16" stroke-width="1">
+    <circle cx="16" cy="98" r="5" fill="url(#lampG)"/>
+    <circle cx="30" cy="98" r="5" fill="url(#lampA)"/>
+    <circle cx="44" cy="98" r="5" fill="url(#lampG)"/>
+    <circle cx="58" cy="98" r="5" fill="url(#lampR)"/>
+  </g>
+  <g fill="#cfd4bf" font-size="3.6" font-family="Arial, sans-serif" font-weight="700">
+    <text x="16" y="110">Ф1</text><text x="30" y="110">Ф2</text><text x="44" y="110">Ф3</text><text x="58" y="110">АВАР</text>
+  </g>
+  <!-- AZ-5 emergency button with guard -->
+  <rect x="74" y="68" width="38" height="44" rx="3" fill="#2b3123" stroke="#1a1e15" stroke-width="1"/>
+  <path d="M74 68h38v6H74z" fill="#f5c400"/>
+  <path d="M78 68l-4 6M86 68l-4 6M94 68l-4 6M102 68l-4 6M110 68l-4 6" stroke="#111" stroke-width="2.2"/>
+  <circle cx="93" cy="92" r="13" fill="#1a1a16" stroke="#6b705f" stroke-width="1.2"/>
+  <circle cx="93" cy="91" r="10" fill="url(#btn)"/>
+  <ellipse cx="89.5" cy="87" rx="4" ry="2.4" fill="#fff" opacity=".45"/>
+  <text x="93" y="109.5" font-size="5.5" fill="#e4dfc4">АЗ-5</text>
+</svg>

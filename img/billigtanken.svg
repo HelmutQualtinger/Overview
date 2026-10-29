@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" font-family="Helvetica, Arial, sans-serif" font-weight="700" text-anchor="middle">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bfe3f7"/><stop offset=".72" stop-color="#eaf6fc"/><stop offset=".72" stop-color="#9aa3ab"/><stop offset="1" stop-color="#7d868e"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#a5151a"/><stop offset=".25" stop-color="#e53935"/><stop offset=".55" stop-color="#ef5350"/><stop offset="1" stop-color="#b71c1c"/>
+    </linearGradient>
+    <radialGradient id="globe" cx=".38" cy=".32" r=".7">
+      <stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#f4f4f4"/><stop offset="1" stop-color="#cfcfcf"/>
+    </radialGradient>
+    <linearGradient id="chrome" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8d9499"/><stop offset=".45" stop-color="#f2f4f5"/><stop offset="1" stop-color="#7a8187"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" fill="url(#bg)"/>
+  <g transform="translate(4 7) scale(.93)">
+  <!-- base -->
+  <rect x="26" y="100" width="56" height="8" rx="2" fill="url(#chrome)" stroke="#5b6166" stroke-width="1"/>
+  <!-- pump body -->
+  <path d="M32 100V40a18 18 0 0 1 18-18h8a18 18 0 0 1 18 18v60z" fill="url(#body)" stroke="#7f1014" stroke-width="1.5"/>
+  <!-- globe -->
+  <rect x="45" y="16" width="18" height="7" rx="2" fill="url(#chrome)" stroke="#5b6166" stroke-width=".8"/>
+  <circle cx="54" cy="11" r="10" fill="url(#globe)" stroke="#b9b9b9" stroke-width="1"/>
+  <rect x="46" y="8" width="16" height="6" rx="1" fill="#e53935"/>
+  <text x="54" y="12.8" font-size="5" fill="#fff">E5</text>
+  <!-- display -->
+  <rect x="38" y="32" width="32" height="22" rx="3" fill="#f7f3e8" stroke="#7f1014" stroke-width="1.2"/>
+  <rect x="41" y="35" width="26" height="9" rx="1.5" fill="#1b2a1f"/>
+  <text x="54" y="42.5" font-size="8" fill="#7cff8a" font-family="Courier New, monospace">1.59</text>
+  <text x="54" y="51.5" font-size="5.5" fill="#7f1014">€ / L</text>
+  <!-- dial -->
+  <circle cx="54" cy="68" r="9" fill="#fff" stroke="#7f1014" stroke-width="1.2"/>
+  <path d="M54 68l5-4" stroke="#222" stroke-width="1.6" stroke-linecap="round"/>
+  <g stroke="#7f1014" stroke-width="1"><path d="M47 68h2M59 68h2M54 61v2"/></g>
+  <!-- highlight stripe -->
+  <rect x="38" y="82" width="32" height="5" fill="#fff" opacity=".85"/>
+  <path d="M37 42v54" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".35"/>
+  <!-- holster + nozzle -->
+  <rect x="76" y="50" width="6" height="14" rx="2" fill="url(#chrome)" stroke="#5b6166" stroke-width=".8"/>
+  <path d="M82 54h6l9 4v5h-7l-4-2h-4z" fill="#2b2f33" stroke="#111" stroke-width=".8"/>
+  <path d="M97 58l7-3" stroke="#3a3f44" stroke-width="3" stroke-linecap="round"/>
+  <!-- hose -->
+  <path d="M76 92c10 0 22-4 22-16s-6-14-10-14" fill="none" stroke="#1d1f21" stroke-width="4" stroke-linecap="round"/>
+  <!-- drop -->
+  <path d="M106 64c0 0-3.5 5-3.5 7.2a3.5 3.5 0 0 0 7 0c0-2.2-3.5-7.2-3.5-7.2z" fill="#f9a825" stroke="#c17900" stroke-width=".6"/>
+  </g>
+</svg>

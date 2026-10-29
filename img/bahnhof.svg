@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" font-family="Helvetica, Arial, sans-serif" font-weight="700">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9fd3f5"/><stop offset="1" stop-color="#e6f4fc"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#b71c1c"/><stop offset=".5" stop-color="#ec2b2b"/><stop offset="1" stop-color="#b71c1c"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3d5566"/><stop offset="1" stop-color="#14212b"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6d747a"/><stop offset=".5" stop-color="#d9dde0"/><stop offset="1" stop-color="#6d747a"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" fill="url(#sky)"/>
+  <!-- mountains (Alpstein) -->
+  <path d="M0 70l18-20 10 9 16-24 14 18 10-10 18 20 14-12 20 19v20H0z" fill="#8fb3c9"/>
+  <path d="M44 35l5.6 7.2-2.6-.8-2 2-2-2.2-2.6 1z M68 43l4.5 5-2-.4-1.6 1.4-1.6-1.4-2.4.6z M18 50l4.4 5-2-.4-1.6 1.6-1.4-1.6-2.4.4z" fill="#fff"/>
+  <!-- platform -->
+  <path d="M0 70h120v34H0z" fill="#d8dde1"/>
+  <path d="M0 99h120v5H0z" fill="#f2f2f2"/>
+  <path d="M0 99h120" stroke="#f5c400" stroke-width="1.4" stroke-dasharray="4 3"/>
+  <!-- track -->
+  <path d="M0 104h120v16H0z" fill="#8a8f93"/>
+  <g stroke="#5b4a3a" stroke-width="3"><path d="M36 106h48M30 112h60M24 118h72"/></g>
+  <path d="M46 104L30 120M74 104l16 16" stroke="url(#metal)" stroke-width="2.5"/>
+  <!-- train front -->
+  <path d="M38 102V74c0-8 6-12 22-12s22 4 22 12v28z" fill="url(#red)" stroke="#7f1014" stroke-width="1.2"/>
+  <path d="M43 76c0-5 5-8 17-8s17 3 17 8v9H43z" fill="url(#glass)"/>
+  <path d="M46 72c4-2 9-2 13-2" stroke="#fff" stroke-width="1.4" opacity=".55" stroke-linecap="round"/>
+  <rect x="46" y="88" width="28" height="4" rx="1" fill="#fff"/>
+  <circle cx="45" cy="96" r="2.6" fill="#fff8c8" stroke="#7f1014" stroke-width=".6"/>
+  <circle cx="75" cy="96" r="2.6" fill="#fff8c8" stroke="#7f1014" stroke-width=".6"/>
+  <circle cx="60" cy="66.5" r="1.8" fill="#fff8c8"/>
+  <rect x="40" y="101" width="40" height="3" fill="#333"/>
+  <!-- station clock on pole -->
+  <rect x="101" y="40" width="3" height="64" fill="url(#metal)"/>
+  <g transform="translate(102.5 24)">
+    <circle r="15" fill="#fff" stroke="#1d1d1d" stroke-width="2.2"/>
+    <g stroke="#1d1d1d" stroke-width="2.2">
+      <path d="M0-12.5v4M0 12.5v-4M-12.5 0h4M12.5 0h-4"/>
+      <path d="M6.25-10.8l-1.5 2.6M10.8-6.25l-2.6 1.5M10.8 6.25l-2.6-1.5M6.25 10.8l-1.5-2.6M-6.25 10.8l1.5-2.6M-10.8 6.25l2.6-1.5M-10.8-6.25l2.6 1.5M-6.25-10.8l1.5 2.6" stroke-width="1.4"/>
+    </g>
+    <path d="M0 2.5V-8" stroke="#1d1d1d" stroke-width="2.6" transform="rotate(-50)"/>
+    <path d="M0 2.5V-11.5" stroke="#1d1d1d" stroke-width="1.8" transform="rotate(60)"/>
+    <g transform="rotate(150)"><path d="M0 3V-9" stroke="#e30613" stroke-width=".9"/><circle cy="-8.5" r="2" fill="#e30613"/></g>
+    <circle r="1.2" fill="#1d1d1d"/>
+  </g>
+  <!-- station sign -->
+  <rect x="4" y="42" width="38" height="11" rx="1.5" fill="#1f3f8f" stroke="#fff" stroke-width="1.2"/>
+  <text x="23" y="50.2" font-size="6.6" fill="#fff" text-anchor="middle">Rebstein</text>
+  <rect x="11" y="53" width="2" height="46" fill="#4f5a63"/><rect x="33" y="53" width="2" height="46" fill="#4f5a63"/>
+</svg>

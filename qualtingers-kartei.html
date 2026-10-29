@@ -332,11 +332,11 @@
   /* ---------- CARDS ---------- */
   .card{
     position:relative;
-    display:flex; flex-direction:column; gap:8px;
+    display:block;
     background:var(--card) var(--vein) 0 0/900px 900px;
     border:1px solid var(--line);
     outline:1px solid var(--line-soft); outline-offset:-5px;
-    padding:18px 18px 12px;
+    padding:18px 18px 50px;
     color:var(--ink);
     transform:translateY(16px); opacity:0;
     transition:transform .5s cubic-bezier(.28,.11,.32,1),
@@ -348,10 +348,11 @@
   .card.in:hover{transform:translateY(-3px);}
   .card:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
 
-  .card-top{display:flex; align-items:flex-start; justify-content:space-between; gap:12px;}
+  .card-top{display:contents;}
   .card-icon{
     position:relative; overflow:hidden;
-    width:66px; height:66px; flex:none;
+    float:left; margin:3px 12px 4px 0;
+    width:58px; height:58px; flex:none;
     display:flex; align-items:center; justify-content:center;
     background:var(--tint); color:var(--tint-ink);
     border:1px solid var(--line);
@@ -362,27 +363,43 @@
     object-fit:cover; display:block;
   }
   .go{
+    position:absolute; top:12px; right:14px;
     font-size:15px; color:var(--bronze);
     transition:transform .25s ease, color .25s ease;
   }
   .card:hover .go{color:var(--accent); transform:translate(2px,-2px);}
 
   .card h3{
-    font-size:17px; font-weight:700; line-height:1.2; letter-spacing:.08em;
-    word-break:break-word;
+    font-size:16px; font-weight:700; line-height:1.2; letter-spacing:.03em;
+    overflow-wrap:anywhere; hyphens:auto; hyphenate-limit-chars:12 5 5;
+    margin:0 0 6px; padding-right:14px;
   }
   .card p{
-    margin:0; flex:1;
+    margin:0; hyphens:auto;
     font-size:16px; line-height:1.4;
     color:var(--ink-soft);
   }
   .card-foot{
+    position:absolute; left:18px; right:18px; bottom:12px;
     display:flex; align-items:center; justify-content:space-between; gap:10px;
-    margin-top:4px; padding-top:8px;
+    padding-top:8px;
     border-top:1px solid var(--line-soft);
     font-family:var(--display); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
     color:var(--ink-faint);
   }
+  /* whole card stays clickable; the GitHub link sits above the stretched title link */
+  .card-link::after{content:""; position:absolute; inset:0; z-index:1;}
+  .card-link:focus-visible{outline:none;}
+  .card:has(.card-link:focus-visible){outline:2px solid var(--accent); outline-offset:3px;}
+  .foot-r{display:inline-flex; align-items:center; gap:8px;}
+  .gh{
+    position:relative; z-index:2;
+    display:inline-flex; width:15px; height:15px;
+    color:var(--ink-faint); transition:color .2s ease, transform .2s ease;
+  }
+  .gh svg{width:100%; height:100%;}
+  .gh:hover{color:var(--ink); transform:scale(1.15);}
+  .gh:focus-visible{outline:1px solid var(--accent); outline-offset:2px;}
   .lang-dot{
     width:6px; height:6px;
     background:var(--accent); display:inline-block; margin-right:8px;
@@ -395,6 +412,7 @@
   .card-frame .go:hover{color:var(--accent);}
   .card-frame.in:hover{transform:none;}
   .frame-wrap{
+    clear:both; margin-top:12px;
     position:relative; width:100%; padding-top:56.25%;
     overflow:hidden; background:var(--bg-alt);
     border:1px solid var(--line);
@@ -452,6 +470,7 @@
   footer p{margin:0 auto; max-width:720px;}
   footer a{color:#c9a46c;}
   footer a:hover{text-decoration:underline; text-underline-offset:2px;}
+  footer .credit{font-size:13px; opacity:.75;}
   footer .rule{height:1px; background:#5e5446; margin:22px auto 18px; max-width:160px;}
 
   @media (max-width:900px){
@@ -464,8 +483,22 @@
     .hero-stats div:nth-child(odd){border-left:none;}
     .hero-stats div:nth-child(n+3){border-top:1px solid var(--line);}
   }
+  @media (max-width:600px){
+    .grid:not(.grid-webcams){grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; padding-inline:12px;}
+    .grid:not(.grid-webcams) .card{padding:10px 10px 36px; outline-offset:-4px;}
+    .grid:not(.grid-webcams) .card-icon{width:40px; height:40px; margin:2px 8px 2px 0;}
+    .grid:not(.grid-webcams) .card-icon svg{width:24px; height:24px;}
+    .grid:not(.grid-webcams) .go{top:6px; right:8px; font-size:13px;}
+    .grid:not(.grid-webcams) .card h3{font-size:13px; letter-spacing:.02em; margin-bottom:4px; hyphenate-limit-chars:6 3 3;}
+    .grid:not(.grid-webcams) .card p{font-size:14px; line-height:1.3;}
+    .grid:not(.grid-webcams) .card-foot{left:10px; right:10px; bottom:8px; padding-top:6px; font-size:9px; letter-spacing:.06em; gap:4px; white-space:nowrap;}
+    .grid:not(.grid-webcams) .lang-dot{margin-right:5px;}
+    .grid:not(.grid-webcams) .gh{width:12px; height:12px;}
+    .grid:not(.grid-webcams) .foot-r{gap:5px;}
+  }
   @media (max-width:480px){
-    .card{padding:14px 14px 10px;}
+    .grid-webcams .card{padding:14px 14px 46px;}
+    .grid-webcams .card-foot{left:14px; right:14px; bottom:10px;}
   }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto;}
@@ -752,6 +785,7 @@
   <g stroke="#1f1c19" stroke-width=".6"><path d="M19.2 12.4v27.2M20.8 12.4v27.2"/></g>
   <g fill="#c9a46c" stroke="#1f1c19" stroke-width=".6"><path d="M17 17h6v2h-6zM17 26h6v2h-6zM17 35h6v2h-6z"/></g>
 </symbol>
+<symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
 </defs>
 </svg>
 
@@ -821,81 +855,99 @@
         <div class="section-head">
           <p class="eyebrow"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-toolbox"/></svg></span><span data-i18n="sheetWerkzeuge">Werkzeuge &amp; Lernen</span></p>
           <h2 data-i18n="sectionWerkzeugeH2">Kleine Helfer, große Wirkung.</h2>
-          <span class="count" data-i18n="sectionWerkzeugeCount">12 Projekte</span>
+          <span class="count" data-i18n="sectionWerkzeugeCount">15 Projekte</span>
         </div>
         <div class="grid">
-          <a class="card" href="https://helmutqualtinger.github.io/training/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/training/dashboard_screenshot.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-cap"/></svg></span><span class="go">↗</span></div>
-            <h3>training</h3>
+          <div class="card">
+            <div class="card-top"><span class="card-icon"><img src="img/talk4me-lips.jpg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-speech"/></svg></span><span class="go">↗</span></div>
+            <h3><a class="card-link" href="https://talk4me.bekerh.ddns.net" target="_blank" rel="noopener">Talk4Me</a></h3>
+            <p data-i18n="cardTalk4Me">Tippen, übersetzen, sprechen lassen. Selbst hostbar, Sätze bleiben in der eigenen Datenbank.</p>
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Talk4Me" target="_blank" rel="noopener" aria-label="Talk4Me auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Okt 2026</span></span></div>
+          </div>
+          <div class="card">
+            <div class="card-top"><span class="card-icon"><img src="img/training.svg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-cap"/></svg></span><span class="go">↗</span></div>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/training/" target="_blank" rel="noopener">training</a></h3>
             <p data-i18n="cardTraining">Übungs- und Trainingsanwendung</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Sep 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/Language-Cards/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/training" target="_blank" rel="noopener" aria-label="training auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Sep 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Language-Cards/social-preview.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-speech"/></svg></span><span class="go">↗</span></div>
-            <h3>Language-Cards</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Language-Cards/" target="_blank" rel="noopener">Language-Cards</a></h3>
             <p data-i18n="cardLanguageCards">Vokabelkarten zum Sprachenlernen</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>JavaScript</span><span>Sep 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/boycott/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>JavaScript</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Language-Cards" target="_blank" rel="noopener" aria-label="Language-Cards auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Sep 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/boycott/social-preview.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-ban"/></svg></span><span class="go">↗</span></div>
-            <h3>boycott</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/boycott/" target="_blank" rel="noopener">boycott</a></h3>
             <p data-i18n="cardBoycott">Interaktives Web-Tool</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
-          </a>
-          <a class="card" href="https://www.bekerh.ddns.net" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><img src="https://www.bekerh.ddns.net/screenshot.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-server"/></svg></span><span class="go">↗</span></div>
-            <h3>apache</h3>
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/boycott" target="_blank" rel="noopener" aria-label="boycott auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Aug 2026</span></span></div>
+          </div>
+          <div class="card">
+            <div class="card-top"><span class="card-icon"><img src="img/apache-winnetou.jpg" alt="" title="Pierre Brice als Winnetou, Elspe 1986, Foto: Lothar Spurzem, CC BY-SA 2.0 DE" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-server"/></svg></span><span class="go">↗</span></div>
+            <h3><a class="card-link" href="https://www.bekerh.ddns.net" target="_blank" rel="noopener">apache</a></h3>
             <p data-i18n="cardApache">Docker-Konfiguration für Apache-Webserver</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/WattRechnerFahrrad/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/apache" target="_blank" rel="noopener" aria-label="apache auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Aug 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/WattRechnerFahrrad/screenshots/social-preview.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-bike"/></svg></span><span class="go">↗</span></div>
-            <h3>WattRechnerFahrrad</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/WattRechnerFahrrad/" target="_blank" rel="noopener">WattRechnerFahrrad</a></h3>
             <p data-i18n="cardWattRechner">Watt-Rechner fürs Fahrrad</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/webradio/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/WattRechnerFahrrad" target="_blank" rel="noopener" aria-label="WattRechnerFahrrad auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Aug 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/webradio/preview.svg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-radio"/></svg></span><span class="go">↗</span></div>
-            <h3>webradio</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/webradio/" target="_blank" rel="noopener">webradio</a></h3>
             <p data-i18n="cardWebradio">Webradio-Player</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>JavaScript</span><span>Apr 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/KISlides/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>JavaScript</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/webradio" target="_blank" rel="noopener" aria-label="webradio auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Apr 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-robot"/></svg></span><span class="go">↗</span></div>
-            <h3>KISlides</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/KISlides/" target="_blank" rel="noopener">KISlides</a></h3>
             <p data-i18n="cardKISlides">Präsentationsfolien zu KI / Künstlicher Intelligenz</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/QrGenerarator/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/KISlides" target="_blank" rel="noopener" aria-label="KISlides auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Apr 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/QrGenerarator/screenshot.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-qr"/></svg></span><span class="go">↗</span></div>
-            <h3>QrGenerarator</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/QrGenerarator/" target="_blank" rel="noopener">QrGenerarator</a></h3>
             <p data-i18n="cardQrGenerator">Web-App zum Generieren von QR-Codes</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/BilligTanken/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-fuel"/></svg></span><span class="go">↗</span></div>
-            <h3>BilligTanken</h3>
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/QrGenerarator" target="_blank" rel="noopener" aria-label="QrGenerarator auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Apr 2026</span></span></div>
+          </div>
+          <div class="card">
+            <div class="card-top"><span class="card-icon"><img src="img/billigtanken.svg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-fuel"/></svg></span><span class="go">↗</span></div>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/BilligTanken/" target="_blank" rel="noopener">BilligTanken</a></h3>
             <p data-i18n="cardBilligTanken">Spritpreis-Tracker für E5 Super 95 in Vorarlberg. Live E-Control-Austria-API, Leaflet-Karte, GPS-Distanzen.</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/RebsteinBahnhof/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/RebsteinBahnhof/og-image.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-train"/></svg></span><span class="go">↗</span></div>
-            <h3>RebsteinBahnhof</h3>
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/BilligTanken" target="_blank" rel="noopener" aria-label="BilligTanken auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Aug 2026</span></span></div>
+          </div>
+          <div class="card">
+            <div class="card-top"><span class="card-icon"><img src="img/bahnhof.svg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-train"/></svg></span><span class="go">↗</span></div>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/RebsteinBahnhof/" target="_blank" rel="noopener">RebsteinBahnhof</a></h3>
             <p data-i18n="cardRebsteinBahnhof">Live SBB Abfahrts-/Ankunftstafel für Rebstein-Marbach (Bahnhofsuhr-Design von Hans Hilfiker)</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>JavaScript</span><span>Aug 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/WetterVorschau/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>JavaScript</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/RebsteinBahnhof" target="_blank" rel="noopener" aria-label="RebsteinBahnhof auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Aug 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/WetterVorschau/screenshot.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-cloud"/></svg></span><span class="go">↗</span></div>
-            <h3>WetterVorschau</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/WetterVorschau/" target="_blank" rel="noopener">WetterVorschau</a></h3>
             <p data-i18n="cardWetterVorschau">72-Stunden- &amp; 14-Tage-Wettervorhersage-App mit Geolokalisierung</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/WetterVorschau" target="_blank" rel="noopener" aria-label="WetterVorschau auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Apr 2026</span></span></div>
+          </div>
+          <a class="card" href="https://wetter.bekerh.ddns.net" target="_blank" rel="noopener">
+            <div class="card-top"><span class="card-icon"><img src="img/wetter.svg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-cloud"/></svg></span><span class="go">↗</span></div>
+            <h3 data-i18n="cardWetterTitle">Aktuelles Wetter</h3>
+            <p data-i18n="cardWetter">Live-Messwerte der Wetterstation Feldkirch</p>
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Live</span></div>
           </a>
-          <a class="card" href="https://helmutqualtinger.github.io/WetterSymbol/" target="_blank" rel="noopener">
-            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/WetterSymbol/screenshot.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-sun"/></svg></span><span class="go">↗</span></div>
-            <h3>WetterSymbol</h3>
-            <p data-i18n="cardWetterSymbol">Bibliothek für Wettersymbole</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
+          <a class="card" href="http://strom.bekerh.ddns.net" target="_blank" rel="noopener">
+            <div class="card-top"><span class="card-icon"><img src="img/tschernobyl.svg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-bolt"/></svg></span><span class="go">↗</span></div>
+            <h3>Tschernobyl</h3>
+            <p data-i18n="cardTschernobyl">Live-Dashboard für drei Shelly-3PM-Stromzähler im Stil eines sowjetischen Kraftwerksleitstands</p>
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Live</span></div>
           </a>
+          <div class="card">
+            <div class="card-top"><span class="card-icon"><img src="img/pdf-reorder.svg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-sortbars"/></svg></span><span class="go">↗</span></div>
+            <h3><a class="card-link" href="http://rectoscan.bekerh.ddns.net" target="_blank" rel="noopener">PDF Reorder</a></h3>
+            <p data-i18n="cardPdfReorder">Web-Dienst zum Umsortieren und Neuordnen von PDF-Seiten</p>
+            <div class="card-foot"><span><span class="lang-dot"></span>Python</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/PDFreorder" target="_blank" rel="noopener" aria-label="PDFreorder auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Dez 2023</span></span></div>
+          </div>
         </div>
       </section>
 
@@ -906,48 +958,48 @@
           <span class="count" data-i18n="sectionHommagenCount">7 Projekte</span>
         </div>
         <div class="grid">
-          <a class="card" href="https://helmutqualtinger.github.io/Wissenschafter/" target="_blank" rel="noopener">
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Wissenschafter/Wissenschadter.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-portrait"/></svg></span><span class="go">↗</span></div>
-            <h3>Wissenschafter</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Wissenschafter/" target="_blank" rel="noopener">Wissenschafter</a></h3>
             <p data-i18n="cardWissenschafter">Interaktive Profile berühmter Wissenschaftler</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/Goethe/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Wissenschafter" target="_blank" rel="noopener" aria-label="Wissenschafter auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Apr 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Goethe/Goethe.jpg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-quill"/></svg></span><span class="go">↗</span></div>
-            <h3>Goethe</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Goethe/" target="_blank" rel="noopener">Goethe</a></h3>
             <p data-i18n="cardGoethe">Interaktive Hommage an Johann Wolfgang von Goethe</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/Qualtinger/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Goethe" target="_blank" rel="noopener" aria-label="Goethe auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Apr 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Qualtinger/qualtingerportraet.5005575.jpg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-mic"/></svg></span><span class="go">↗</span></div>
-            <h3>Qualtinger</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Qualtinger/" target="_blank" rel="noopener">Qualtinger</a></h3>
             <p data-i18n="cardQualtinger">Interaktive Hommage an Helmut Qualtinger</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/Artmann/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Qualtinger" target="_blank" rel="noopener" aria-label="Qualtinger auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Apr 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Artmann/assets/972048_opener_341579_hc_artmann_100_jahre_19970101_pd3399_p.jpg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-quill"/></svg></span><span class="go">↗</span></div>
-            <h3>Artmann</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Artmann/" target="_blank" rel="noopener">Artmann</a></h3>
             <p data-i18n="cardArtmann">Interaktive Hommage an H.C. Artmann</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/dodekaeder/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Artmann" target="_blank" rel="noopener" aria-label="Artmann auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Apr 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/dodekaeder/images/social-preview.jpg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-polyhedron"/></svg></span><span class="go">↗</span></div>
-            <h3>dodekaeder</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/dodekaeder/" target="_blank" rel="noopener">dodekaeder</a></h3>
             <p data-i18n="cardDodekaeder">Zwei interaktive 3D-Dodekaeder-Porträtgalerien (Three.js)</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Sep 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/Museum3d/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/dodekaeder" target="_blank" rel="noopener" aria-label="dodekaeder auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Sep 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Museum3d/docs/og-image.jpg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-landmark"/></svg></span><span class="go">↗</span></div>
-            <h3>Museum3d</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Museum3d/" target="_blank" rel="noopener">Museum3d</a></h3>
             <p data-i18n="cardMuseum3d">Begehbares 3D-Kunstmuseum, gebaut mit Three.js</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/WienerSchule/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Museum3d" target="_blank" rel="noopener" aria-label="Museum3d auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Aug 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/WienerSchule/slide13-social-preview.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-cap"/></svg></span><span class="go">↗</span></div>
-            <h3>WienerSchule</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/WienerSchule/" target="_blank" rel="noopener">WienerSchule</a></h3>
             <p data-i18n="cardWienerSchule">Lernanwendung mit Wien-Bezug</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
-          </a>
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/WienerSchule" target="_blank" rel="noopener" aria-label="WienerSchule auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Aug 2026</span></span></div>
+          </div>
         </div>
       </section>
 
@@ -958,78 +1010,78 @@
           <span class="count" data-i18n="sectionPhysikCount">13 Projekte</span>
         </div>
         <div class="grid">
-          <a class="card" href="https://helmutqualtinger.github.io/LaSilla/" target="_blank" rel="noopener">
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://www.bekerh.ddns.net/lasilla-preview.jpg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-sun"/></svg></span><span class="go">↗</span></div>
-            <h3>La Silla</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/LaSilla/" target="_blank" rel="noopener">La Silla</a></h3>
             <p data-i18n="cardLaSilla">La-Silla-Observatorium der ESO in der Atacama-Wüste</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Okt 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/Doppelpendel/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/LaSilla" target="_blank" rel="noopener" aria-label="LaSilla auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Okt 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Doppelpendel/screenshot_fpoe.jpg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-pendulum"/></svg></span><span class="go">↗</span></div>
-            <h3>Doppelpendel</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Doppelpendel/" target="_blank" rel="noopener">Doppelpendel</a></h3>
             <p data-i18n="cardDoppelpendel">Chaotisches Doppelpendel — dieselbe Physik, die den Hintergrund oben zeichnet</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
-          </a>
-          <a class="card" href="https://aistudio.google.com/apps/83d2f517-7a52-472b-a310-23271301ab1f?fullscreenApplet=true&amp;showAssistant=true&amp;showPreview=true" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Doppelpendel" target="_blank" rel="noopener" aria-label="Doppelpendel auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Aug 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-apple"/></svg></span><span class="go">↗</span></div>
-            <h3>newtonian-particle-sim</h3>
+            <h3><a class="card-link" href="https://aistudio.google.com/apps/83d2f517-7a52-472b-a310-23271301ab1f?fullscreenApplet=true&amp;showAssistant=true&amp;showPreview=true" target="_blank" rel="noopener">newtonian-particle-sim</a></h3>
             <p data-i18n="cardNewtonian">Newtonscher Teilchenphysik-Simulator in TypeScript</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>TypeScript</span><span>Apr 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/PeriodicTable/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>TypeScript</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/newtonian-particle-sim" target="_blank" rel="noopener" aria-label="newtonian-particle-sim auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Apr 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="img/periodictable-atom.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-flask"/></svg></span><span class="go">↗</span></div>
-            <h3>PeriodicTable</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/PeriodicTable/" target="_blank" rel="noopener">PeriodicTable</a></h3>
             <p data-i18n="cardPeriodicTable">Interaktives Periodensystem der Elemente</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/Feigenbaum-interactive/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/PeriodicTable" target="_blank" rel="noopener" aria-label="PeriodicTable auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Apr 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="img/feigenbaum.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-branch"/></svg></span><span class="go">↗</span></div>
-            <h3>Feigenbaum-interactive</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Feigenbaum-interactive/" target="_blank" rel="noopener">Feigenbaum-interactive</a></h3>
             <p data-i18n="cardFeigenbaum">Interaktives Feigenbaum-Bifurkationsdiagramm</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/Wolfram-JS/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Feigenbaum-interactive" target="_blank" rel="noopener" aria-label="Feigenbaum-interactive auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Apr 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Wolfram-JS/screenshot.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-grid"/></svg></span><span class="go">↗</span></div>
-            <h3>Wolfram-JS</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Wolfram-JS/" target="_blank" rel="noopener">Wolfram-JS</a></h3>
             <p data-i18n="cardWolframJS">Wolframs elementare zelluläre Automaten in JavaScript</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/HiAcc-Mandelbrot/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Wolfram-JS" target="_blank" rel="noopener" aria-label="Wolfram-JS auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Apr 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/HiAcc-Mandelbrot/docs/social-preview.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-spiral"/></svg></span><span class="go">↗</span></div>
-            <h3>HiAcc-Mandelbrot</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/HiAcc-Mandelbrot/" target="_blank" rel="noopener">HiAcc-Mandelbrot</a></h3>
             <p data-i18n="cardJsMandelbrot">Deep-Zoom-Mandelbrot-Explorer mit WebGPU (WebGL2-Fallback) und Störungstheorie bis 1e30-facher Vergrößerung</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Okt 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/Maxwell/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/HiAcc-Mandelbrot" target="_blank" rel="noopener" aria-label="HiAcc-Mandelbrot auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Okt 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-bolt"/></svg></span><span class="go">↗</span></div>
-            <h3>Maxwell</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Maxwell/" target="_blank" rel="noopener">Maxwell</a></h3>
             <p data-i18n="cardMaxwell">Animierte HTML-Slideshow zu Maxwells vier Gleichungen des Elektromagnetismus</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Mär 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/Roboter/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Maxwell" target="_blank" rel="noopener" aria-label="Maxwell auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Mär 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Roboter/social-preview.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-robot"/></svg></span><span class="go">↗</span></div>
-            <h3>Roboter</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Roboter/" target="_blank" rel="noopener">Roboter</a></h3>
             <p data-i18n="cardRoboter">5-Achsen-Roboterarm-Simulator mit Three.js — Kollisionserkennung, Greiferkamera und automatisches Pick-up</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Sep 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/Mordraten/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Roboter" target="_blank" rel="noopener" aria-label="Roboter auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Sep 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Mordraten/screenshot.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-magnifier"/></svg></span><span class="go">↗</span></div>
-            <h3>Mordraten</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Mordraten/" target="_blank" rel="noopener">Mordraten</a></h3>
             <p data-i18n="cardMordraten">Wer war's? Ein Detektiv-Ratespiel</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/LynnIQ/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Mordraten" target="_blank" rel="noopener" aria-label="Mordraten auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Aug 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/LynnIQ/preview.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-brain"/></svg></span><span class="go">↗</span></div>
-            <h3>LynnIQ</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/LynnIQ/" target="_blank" rel="noopener">LynnIQ</a></h3>
             <p data-i18n="cardLynnIQ">IQ- &amp; Statistik-Visualisierung</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/SortVis/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/LynnIQ" target="_blank" rel="noopener" aria-label="LynnIQ auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Apr 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-sortbars"/></svg></span><span class="go">↗</span></div>
-            <h3>SortVis</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/SortVis/" target="_blank" rel="noopener">SortVis</a></h3>
             <p data-i18n="cardSortVis">Visualisierung von Sortieralgorithmen</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
-          </a>
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/SortVis" target="_blank" rel="noopener" aria-label="SortVis auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Apr 2026</span></span></div>
+          </div>
         </div>
       </section>
 
@@ -1040,54 +1092,54 @@
           <span class="count" data-i18n="sectionKartenCount">8 Projekte</span>
         </div>
         <div class="grid">
-          <a class="card" href="https://helmutqualtinger.github.io/Svizzera-Maps/" target="_blank" rel="noopener">
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Svizzera-Maps/og-image.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></span><span class="go">↗</span></div>
-            <h3>Svizzera-Maps</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Svizzera-Maps/" target="_blank" rel="noopener">Svizzera-Maps</a></h3>
             <p data-i18n="cardSvizzeraMaps">Interaktive Karte: Einkommen, Lebenserwartung &amp; Geburtenrate der Schweizer Kantone</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/Italia-Maps/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Svizzera-Maps" target="_blank" rel="noopener" aria-label="Svizzera-Maps auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Aug 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Italia-Maps/og-image.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></span><span class="go">↗</span></div>
-            <h3>Italia-Maps</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Italia-Maps/" target="_blank" rel="noopener">Italia-Maps</a></h3>
             <p data-i18n="cardItaliaMaps">Interaktive Choroplethenkarte: Einkommen, Lebenserwartung und Geburtenrate der italienischen Provinzen</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/Austria-Maps/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Italia-Maps" target="_blank" rel="noopener" aria-label="Italia-Maps auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Aug 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Austria-Maps/og-image.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></span><span class="go">↗</span></div>
-            <h3>Austria-Maps</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Austria-Maps/" target="_blank" rel="noopener">Austria-Maps</a></h3>
             <p data-i18n="cardAustriaMaps">Interaktive Karte: Einkommen, Lebenserwartung &amp; Geburtenrate der österreichischen Bezirke</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/Klima/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Austria-Maps" target="_blank" rel="noopener" aria-label="Austria-Maps auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Aug 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Klima/previews/index.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-cloud"/></svg></span><span class="go">↗</span></div>
-            <h3>Klima</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Klima/" target="_blank" rel="noopener">Klima</a></h3>
             <p data-i18n="cardKlima">Klimadaten-Visualisierung</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/Germany-Maps/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Klima" target="_blank" rel="noopener" aria-label="Klima auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Aug 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Germany-Maps/og-image.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></span><span class="go">↗</span></div>
-            <h3>Germany-Maps</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Germany-Maps/" target="_blank" rel="noopener">Germany-Maps</a></h3>
             <p data-i18n="cardGermanyMaps">Interaktive Karte: Einkommen, Lebenserwartung &amp; Geburtenrate der deutschen Landkreise und kreisfreien Städte</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/Underrepresentation/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Germany-Maps" target="_blank" rel="noopener" aria-label="Germany-Maps auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Aug 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Underrepresentation/screenshots/preview.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-sortbars"/></svg></span><span class="go">↗</span></div>
-            <h3>Underrepresentation</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Underrepresentation/" target="_blank" rel="noopener">Underrepresentation</a></h3>
             <p data-i18n="cardUnderrepresentation">Daten-Visualisierung zu Unterrepräsentation</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/WeatherHistory/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Underrepresentation" target="_blank" rel="noopener" aria-label="Underrepresentation auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Aug 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/WeatherHistory/screenshot_medina.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-cloud"/></svg></span><span class="go">↗</span></div>
-            <h3>WeatherHistory</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/WeatherHistory/" target="_blank" rel="noopener">WeatherHistory</a></h3>
             <p data-i18n="cardWeatherHistory">Historische Wetterdaten-Abfrage &amp; interaktives Dashboard</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/montimarifiumit/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/WeatherHistory" target="_blank" rel="noopener" aria-label="WeatherHistory auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Apr 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></span><span class="go">↗</span></div>
-            <h3>montimarifiumit</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/montimarifiumit/" target="_blank" rel="noopener">montimarifiumit</a></h3>
             <p>Monti mari fiumi</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
-          </a>
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/montimarifiumit" target="_blank" rel="noopener" aria-label="montimarifiumit auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Apr 2026</span></span></div>
+          </div>
         </div>
       </section>
 
@@ -1098,84 +1150,84 @@
           <span class="count" data-i18n="sectionSpieleCount">13 Projekte</span>
         </div>
         <div class="grid">
-          <a class="card" href="https://helmutqualtinger.github.io/japan-tempel/tempel.html" target="_blank" rel="noopener">
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://www.bekerh.ddns.net/tempel-preview.jpg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-landmark"/></svg></span><span class="go">↗</span></div>
-            <h3>Japan</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/japan-tempel/tempel.html" target="_blank" rel="noopener">Japan</a></h3>
             <p data-i18n="cardJapan">Japanischer Tempel zum Erkunden</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Okt 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/hanoi/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/japan-tempel" target="_blank" rel="noopener" aria-label="japan-tempel auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Okt 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/hanoi/screenshot.jpg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-stack"/></svg></span><span class="go">↗</span></div>
-            <h3>hanoi</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/hanoi/" target="_blank" rel="noopener">hanoi</a></h3>
             <p data-i18n="cardHanoi">Türme von Hanoi</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/Rubik/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/hanoi" target="_blank" rel="noopener" aria-label="hanoi auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Aug 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Rubik/social-preview.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-cube"/></svg></span><span class="go">↗</span></div>
-            <h3>Rubik</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Rubik/" target="_blank" rel="noopener">Rubik</a></h3>
             <p data-i18n="cardRubik">Rubik's Cube im Browser</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Aug 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/RubikGoogle/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Rubik" target="_blank" rel="noopener" aria-label="Rubik auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Aug 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/RubikGoogle/screenshot.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-cube"/></svg></span><span class="go">↗</span></div>
-            <h3>RubikGoogle</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/RubikGoogle/" target="_blank" rel="noopener">RubikGoogle</a></h3>
             <p data-i18n="cardRubikGoogle">Rubik's Cube — zweite Variante</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>JavaScript</span><span>Aug 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/mahjong/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>JavaScript</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/RubikGoogle" target="_blank" rel="noopener" aria-label="RubikGoogle auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Aug 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/mahjong/screenshot.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-grid"/></svg></span><span class="go">↗</span></div>
-            <h3>mahjong</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/mahjong/" target="_blank" rel="noopener">mahjong</a></h3>
             <p data-i18n="cardMahjong">Mahjong-Solitär im Browser</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Mai 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/SpaceInvader/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/mahjong" target="_blank" rel="noopener" aria-label="mahjong auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Mai 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/SpaceInvader/screenshot.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-invader"/></svg></span><span class="go">↗</span></div>
-            <h3>SpaceInvader</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/SpaceInvader/" target="_blank" rel="noopener">SpaceInvader</a></h3>
             <p data-i18n="cardSpaceInvader">Browser-basiertes Space Invaders im Arcade-Stil — Pixelgrafiken, klassisches HUD, CRT-Effekt</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Mai 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/SudokuGeminiFlash/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/SpaceInvader" target="_blank" rel="noopener" aria-label="SpaceInvader auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Mai 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-grid"/></svg></span><span class="go">↗</span></div>
-            <h3>SudokuGeminiFlash</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/SudokuGeminiFlash/" target="_blank" rel="noopener">SudokuGeminiFlash</a></h3>
             <p data-i18n="cardSudoku">Sudoku im Browser</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Mai 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/LifeJS/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/SudokuGeminiFlash" target="_blank" rel="noopener" aria-label="SudokuGeminiFlash auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Mai 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><svg viewBox="0 0 24 24"><use href="#i-grid"/></svg></span><span class="go">↗</span></div>
-            <h3>LifeJS</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/LifeJS/" target="_blank" rel="noopener">LifeJS</a></h3>
             <p data-i18n="cardLifeJS">Conways Spiel des Lebens in JavaScript</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
-          </a>
-          <a class="card" href="https://helmutqualtinger.github.io/Zaehlen/" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/LifeJS" target="_blank" rel="noopener" aria-label="LifeJS auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Apr 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Zaehlen/screenshot.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-abacus"/></svg></span><span class="go">↗</span></div>
-            <h3>Zaehlen</h3>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Zaehlen/" target="_blank" rel="noopener">Zaehlen</a></h3>
             <p data-i18n="cardZaehlen">Interaktive Lern-App für Zählen und Zahlen</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span>Apr 2026</span></div>
-          </a>
-          <a class="card" href="https://muehle.bekerh.ddns.net" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Zaehlen" target="_blank" rel="noopener" aria-label="Zaehlen auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Apr 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://raw.githubusercontent.com/HelmutQualtinger/muehle/main/docs/screenshot.jpg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-mill"/></svg></span><span class="go">↗</span></div>
-            <h3>Mühle</h3>
+            <h3><a class="card-link" href="https://muehle.bekerh.ddns.net" target="_blank" rel="noopener">Mühle</a></h3>
             <p data-i18n="cardMuehle">Mühle (Nine Men's Morris) in fotorealistischer 3D-Grafik — lokal, gegen KI oder online spielbar</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>Python</span><span>Sep 2026</span></div>
-          </a>
-          <a class="card" href="https://chess.bekerh.ddns.net" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>Python</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/muehle" target="_blank" rel="noopener" aria-label="muehle auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Sep 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://raw.githubusercontent.com/HelmutQualtinger/ChessContainer/main/Chess.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-chess"/></svg></span><span class="go">↗</span></div>
-            <h3>Chess</h3>
+            <h3><a class="card-link" href="https://chess.bekerh.ddns.net" target="_blank" rel="noopener">Chess</a></h3>
             <p data-i18n="cardChess">3D-Schach gegen die Stockfish-Engine, containerisiert mit Docker</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>JavaScript</span><span>Sep 2026</span></div>
-          </a>
-          <a class="card" href="https://tetris.bekerh.ddns.net" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>JavaScript</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/ChessContainer" target="_blank" rel="noopener" aria-label="ChessContainer auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Sep 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://cdn.dribbble.com/userupload/21188001/file/original-73cd4c1ab2602df11b0dccc6feb8739a.jpg?resize=752x&amp;vertical=center" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-tetris"/></svg></span><span class="go">↗</span></div>
-            <h3>Tetris</h3>
+            <h3><a class="card-link" href="https://tetris.bekerh.ddns.net" target="_blank" rel="noopener">Tetris</a></h3>
             <p data-i18n="cardTetris">Tetris in TypeScript, containerisiert mit Docker</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>TypeScript</span><span>Sep 2026</span></div>
-          </a>
-          <a class="card" href="https://shithead.bekerh.ddns.net" target="_blank" rel="noopener">
+            <div class="card-foot"><span><span class="lang-dot"></span>TypeScript</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/tetris" target="_blank" rel="noopener" aria-label="tetris auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Sep 2026</span></span></div>
+          </div>
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://shithead.bekerh.ddns.net/og-image.jpg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-dice"/></svg></span><span class="go">↗</span></div>
-            <h3>Shithead</h3>
+            <h3><a class="card-link" href="https://shithead.bekerh.ddns.net" target="_blank" rel="noopener">Shithead</a></h3>
             <p data-i18n="cardShithead">Browserbasiertes Multiplayer-Kartenspiel Shithead — ohne Installation, ohne Konto, nur ein Raumcode</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>JavaScript</span><span>Sep 2026</span></div>
-          </a>
+            <div class="card-foot"><span><span class="lang-dot"></span>JavaScript</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/shithead" target="_blank" rel="noopener" aria-label="shithead auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Sep 2026</span></span></div>
+          </div>
         </div>
       </section>
 
@@ -1217,6 +1269,7 @@
     <p class="sig" data-i18n="footerSig">Zusammengestellt aus 122 öffentlichen Repositories — 56 davon mit GitHub&nbsp;Pages live geschaltet.</p>
     <div class="rule"></div>
     <p><span data-i18n="footerSourceLabel">Quelle:</span> <a href="https://github.com/HelmutQualtinger" target="_blank" rel="noopener">github.com/HelmutQualtinger</a></p>
+    <p class="credit">Apache-Icon: Pierre Brice als Winnetou, Elspe 1986, Foto: Lothar Spurzem, <a href="https://commons.wikimedia.org/wiki/File:1986-08-02_Elspe_mit_Pierre_Brice-2.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/de/" target="_blank" rel="noopener">CC BY-SA 2.0 DE</a> (zugeschnitten).</p>
     <p data-i18n="footerDisclaimer">Diese Seite ist eine unabhängige Übersicht und keine offizielle Seite des Profils. Alle verlinkten Projekte öffnen in einem neuen Tab.</p>
   </div>
 </footer>
@@ -1362,7 +1415,7 @@
       sectionKartenH2:"Die Welt, in Kacheln gelesen.", sectionKartenCount:"8 Projekte",
       sectionSpieleH2:"Gebaut, um mitzuspielen.", sectionSpieleCount:"13 Projekte",
       sheetWebcams:"Webcams & Live-Blicke", sectionWebcamsH2:"Der Blick nach draußen.", sectionWebcamsCount:"3 Projekte",
-      sectionWerkzeugeH2:"Kleine Helfer, große Wirkung.", sectionWerkzeugeCount:"12 Projekte",
+      sectionWerkzeugeH2:"Kleine Helfer, große Wirkung.", sectionWerkzeugeCount:"15 Projekte",
       cardWissenschafter:"Interaktive Profile berühmter Wissenschaftler",
       cardGoethe:"Interaktive Hommage an Johann Wolfgang von Goethe",
       cardQualtinger:"Interaktive Hommage an Helmut Qualtinger",
@@ -1388,7 +1441,10 @@
       cardRebsteinBahnhof:"Live SBB Abfahrts-/Ankunftstafel für Rebstein-Marbach (Bahnhofsuhr-Design von Hans Hilfiker)",
       cardWeatherHistory:"Historische Wetterdaten-Abfrage & interaktives Dashboard",
       cardWetterVorschau:"72-Stunden- & 14-Tage-Wettervorhersage-App mit Geolokalisierung",
-      cardWetterSymbol:"Bibliothek für Wettersymbole",
+      cardTalk4Me:"Tippen, übersetzen, sprechen lassen. Selbst hostbar, Sätze bleiben in der eigenen Datenbank.",
+      cardWetterTitle:"Aktuelles Wetter", cardWetter:"Live-Messwerte der Wetterstation Feldkirch",
+      cardPdfReorder:"Web-Dienst zum Umsortieren und Neuordnen von PDF-Seiten",
+      cardTschernobyl:"Live-Dashboard für drei Shelly-3PM-Stromzähler im Stil eines sowjetischen Kraftwerksleitstands",
       cardHanoi:"Türme von Hanoi",
       cardMordraten:"Wer war's? Ein Detektiv-Ratespiel",
       cardRubik:"Rubik's Cube im Browser",
@@ -1435,7 +1491,7 @@
       sectionKartenH2:"The world, read in tiles.", sectionKartenCount:"8 projects",
       sectionSpieleH2:"Built to be played.", sectionSpieleCount:"13 projects",
       sheetWebcams:"Webcams & Live Views", sectionWebcamsH2:"The view outside.", sectionWebcamsCount:"3 projects",
-      sectionWerkzeugeH2:"Small helpers, big impact.", sectionWerkzeugeCount:"12 projects",
+      sectionWerkzeugeH2:"Small helpers, big impact.", sectionWerkzeugeCount:"15 projects",
       cardWissenschafter:"Interactive profiles of famous scientists",
       cardGoethe:"Interactive tribute to Johann Wolfgang von Goethe",
       cardQualtinger:"Interactive tribute to Helmut Qualtinger",
@@ -1461,7 +1517,10 @@
       cardRebsteinBahnhof:"Live SBB departure/arrival board for Rebstein-Marbach (station clock design by Hans Hilfiker)",
       cardWeatherHistory:"Historical weather data fetcher & interactive dashboard",
       cardWetterVorschau:"72h & 14-day weather forecast app with geolocation",
-      cardWetterSymbol:"Weather icon and symbol library",
+      cardTalk4Me:"Type, translate, have it spoken. Self-hostable, sentences stay in your own database.",
+      cardWetterTitle:"Current weather", cardWetter:"Live readings from the Feldkirch weather station",
+      cardPdfReorder:"Web service to reorder and rearrange PDF pages",
+      cardTschernobyl:"Live dashboard for three Shelly 3PM power meters, styled as a Soviet power-plant control room",
       cardHanoi:"Towers of Hanoi",
       cardMordraten:"Whodunit? A detective guessing game",
       cardRubik:"Rubik's Cube in the browser",
@@ -1508,7 +1567,7 @@
       sectionKartenH2:"Il mondo, letto a tessere.", sectionKartenCount:"8 progetti",
       sectionSpieleH2:"Costruiti per giocarci.", sectionSpieleCount:"13 progetti",
       sheetWebcams:"Webcam & sguardi dal vivo", sectionWebcamsH2:"Lo sguardo verso fuori.", sectionWebcamsCount:"3 progetti",
-      sectionWerkzeugeH2:"Piccoli aiuti, grande effetto.", sectionWerkzeugeCount:"12 progetti",
+      sectionWerkzeugeH2:"Piccoli aiuti, grande effetto.", sectionWerkzeugeCount:"15 progetti",
       cardWissenschafter:"Profili interattivi di scienziati famosi",
       cardGoethe:"Omaggio interattivo a Johann Wolfgang von Goethe",
       cardQualtinger:"Omaggio interattivo a Helmut Qualtinger",
@@ -1534,7 +1593,10 @@
       cardRebsteinBahnhof:"Tabellone partenze/arrivi SBB in tempo reale per Rebstein-Marbach (design dell'orologio ferroviario di Hans Hilfiker)",
       cardWeatherHistory:"Recupero di dati meteo storici e dashboard interattiva",
       cardWetterVorschau:"App di previsioni meteo a 72 ore e 14 giorni con geolocalizzazione",
-      cardWetterSymbol:"Libreria di icone e simboli meteo",
+      cardTalk4Me:"Scrivi, traduci, fallo leggere ad alta voce. Self-hosted, le frasi restano nel tuo database.",
+      cardWetterTitle:"Meteo attuale", cardWetter:"Misure in tempo reale della stazione meteo di Feldkirch",
+      cardPdfReorder:"Servizio web per riordinare le pagine dei PDF",
+      cardTschernobyl:"Dashboard in tempo reale per tre contatori Shelly 3PM, in stile sala di controllo di una centrale sovietica",
       cardHanoi:"Torri di Hanoi",
       cardMordraten:"Chi è stato? Un gioco investigativo a indovinelli",
       cardRubik:"Cubo di Rubik nel browser",
