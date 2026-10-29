@@ -208,9 +208,13 @@
     padding:clamp(56px,8vw,96px) clamp(28px,6vw,56px) clamp(120px,16vw,200px);
     text-align:center;
   }
+  .title-row{
+    display:flex; align-items:flex-start; justify-content:center;
+    gap:clamp(12px,2vw,26px);
+  }
   .arms{
-    display:block; width:clamp(52px,6vw,72px); height:auto; aspect-ratio:40/48;
-    margin:0 auto 18px;
+    flex:none; display:block; width:clamp(34px,5vw,62px); height:auto; aspect-ratio:40/48;
+    margin-top:.05em;
   }
   .kicker{
     display:inline-block;
@@ -220,7 +224,7 @@
     border-bottom:1px solid var(--bronze);
   }
   h1.title{
-    font-size:clamp(40px,8.4vw,104px);
+    font-size:clamp(34px,6vw,76px);
     line-height:1.02; font-weight:700;
     letter-spacing:.08em;
     margin:0;
@@ -794,6 +798,7 @@
     <a class="brand" href="#top"><span class="glyph"><svg viewBox="0 0 40 48" aria-hidden="true"><use href="#i-sg-arms"/></svg></span><span class="brand-text">Qualtingers&nbsp;Kartei</span></a>
     <div class="nav-links">
       <a href="#werkzeuge" data-i18n="navWerkzeuge">Werkzeuge</a>
+      <a href="#sprachen" data-i18n="navSprachen">Sprachen</a>
       <a href="#hommagen" data-i18n="navHommagen">Hommagen</a>
       <a href="#physik" data-i18n="navPhysik">Physik &amp; Chaos</a>
       <a href="#karten" data-i18n="navKarten">Karten &amp; Daten</a>
@@ -821,6 +826,7 @@
 <div class="sheet" id="sheet" aria-hidden="true">
   <div class="sheet-links">
     <a href="#werkzeuge"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-toolbox"/></svg></span><span data-i18n="sheetWerkzeuge">Werkzeuge &amp; Lernen</span></a>
+    <a href="#sprachen"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-speech"/></svg></span><span data-i18n="sheetSprachen">Sprachen &amp; Grammatik</span></a>
     <a href="#hommagen"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-portrait"/></svg></span><span data-i18n="sheetHommagen">Hommagen &amp; Porträts</span></a>
     <a href="#physik"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-atom"/></svg></span><span data-i18n="navPhysik">Physik &amp; Chaos</span></a>
     <a href="#karten"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></span><span data-i18n="navKarten">Karten &amp; Daten</span></a>
@@ -832,19 +838,21 @@
 <header class="hero" id="top">
   <canvas id="pendulumCanvas" aria-hidden="true"></canvas>
   <div class="hero-inner">
-    <svg class="arms" viewBox="0 0 40 48" role="img" aria-label="Wappen des Kantons St. Gallen"><use href="#i-sg-arms"/></svg>
-    <p class="kicker" data-i18n="heroKicker">54 Projekte. Ein Profil. Live auf GitHub Pages.</p>
-    <h1 class="title">Qualtingers Kartei</h1>
+    <p class="kicker" data-i18n="heroKicker">56 Projekte. Ein Profil. Live auf GitHub Pages.</p>
+    <div class="title-row">
+      <svg class="arms" viewBox="0 0 40 48" role="img" aria-label="Wappen des Kantons St. Gallen"><use href="#i-sg-arms"/></svg>
+      <h1 class="title">Qualtingers Kartei</h1>
+    </div>
     <p class="lede" data-i18n-html="heroLede">Interaktive Fundstücke zwischen Kabarett, Chaostheorie und Kartografie — jedes einzeln veröffentlicht von <strong>@HelmutQualtinger</strong>. Die Wirbelspur im Hintergrund ist kein Muster, sondern ein echtes Doppelpendel in Echtzeit.</p>
     <div class="cta-row">
       <a class="btn" href="#hommagen" data-i18n="heroCtaPrimary">Kartei durchsehen</a>
       <a class="link-more" href="https://github.com/HelmutQualtinger" target="_blank" rel="noopener" data-i18n-html="heroCtaSecondary">Profil auf GitHub <span class="chev">›</span></a>
     </div>
     <div class="hero-stats">
-      <div><b>122</b><span data-i18n="statRepos">Repositories</span></div>
-      <div><b>56</b><span data-i18n="statLive">mit Pages live</span></div>
-      <div><b>6</b><span data-i18n="statRubriken">Rubriken</span></div>
-      <div><b>07.09.26</b><span data-i18n="statStand">Stand</span></div>
+      <div><b>139</b><span data-i18n="statRepos">Repositories</span></div>
+      <div><b>60</b><span data-i18n="statLive">mit Pages live</span></div>
+      <div><b>7</b><span data-i18n="statRubriken">Rubriken</span></div>
+      <div><b>29.10.26</b><span data-i18n="statStand">Stand</span></div>
     </div>
   </div>
 </header>
@@ -855,7 +863,7 @@
         <div class="section-head">
           <p class="eyebrow"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-toolbox"/></svg></span><span data-i18n="sheetWerkzeuge">Werkzeuge &amp; Lernen</span></p>
           <h2 data-i18n="sectionWerkzeugeH2">Kleine Helfer, große Wirkung.</h2>
-          <span class="count" data-i18n="sectionWerkzeugeCount">15 Projekte</span>
+          <span class="count" data-i18n="sectionWerkzeugeCount">14 Projekte</span>
         </div>
         <div class="grid">
           <div class="card">
@@ -869,12 +877,6 @@
             <h3><a class="card-link" href="https://helmutqualtinger.github.io/training/" target="_blank" rel="noopener">training</a></h3>
             <p data-i18n="cardTraining">Übungs- und Trainingsanwendung</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/training" target="_blank" rel="noopener" aria-label="training auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Sep 2026</span></span></div>
-          </div>
-          <div class="card">
-            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Language-Cards/social-preview.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-speech"/></svg></span><span class="go">↗</span></div>
-            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Language-Cards/" target="_blank" rel="noopener">Language-Cards</a></h3>
-            <p data-i18n="cardLanguageCards">Vokabelkarten zum Sprachenlernen</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>JavaScript</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Language-Cards" target="_blank" rel="noopener" aria-label="Language-Cards auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Sep 2026</span></span></div>
           </div>
           <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/boycott/social-preview.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-ban"/></svg></span><span class="go">↗</span></div>
@@ -947,6 +949,34 @@
             <h3><a class="card-link" href="http://rectoscan.bekerh.ddns.net" target="_blank" rel="noopener">PDF Reorder</a></h3>
             <p data-i18n="cardPdfReorder">Web-Dienst zum Umsortieren und Neuordnen von PDF-Seiten</p>
             <div class="card-foot"><span><span class="lang-dot"></span>Python</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/PDFreorder" target="_blank" rel="noopener" aria-label="PDFreorder auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Dez 2023</span></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sprachen">
+        <div class="section-head">
+          <p class="eyebrow"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-speech"/></svg></span><span data-i18n="sheetSprachen">Sprachen &amp; Grammatik</span></p>
+          <h2 data-i18n="sectionSprachenH2">Wörter, Artikel, Verben.</h2>
+          <span class="count" data-i18n="sectionSprachenCount">3 Projekte</span>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Language-Cards/social-preview.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-speech"/></svg></span><span class="go">↗</span></div>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Language-Cards/" target="_blank" rel="noopener">Wortkarten</a></h3>
+            <p data-i18n="cardLanguageCards">Spanische Vokabeln als Karteikarten, Zielsprache Italienisch, Deutsch oder Englisch, mit Beispielsätzen und Sprachausgabe.</p>
+            <div class="card-foot"><span><span class="lang-dot"></span>JavaScript</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Language-Cards" target="_blank" rel="noopener" aria-label="Language-Cards auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Sep 2026</span></span></div>
+          </div>
+          <div class="card">
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/italian-articles/og-image.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-speech"/></svg></span><span class="go">↗</span></div>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/italian-articles/" target="_blank" rel="noopener">Articoli</a></h3>
+            <p data-i18n="cardItalianArticles">Wie der Anfangsbuchstabe zwischen il, lo, l’, la, un, uno, un’ entscheidet und wie Artikel mit Präpositionen verschmelzen.</p>
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/italian-articles" target="_blank" rel="noopener" aria-label="italian-articles auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Okt 2026</span></span></div>
+          </div>
+          <div class="card">
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/ItalianConjug/og-image.jpg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-speech"/></svg></span><span class="go">↗</span></div>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/ItalianConjug/" target="_blank" rel="noopener">Coniugazione</a></h3>
+            <p data-i18n="cardItalianConjug">Interaktive Folien zur Konjugation italienischer Verben: regelmäßige Verben, essere, avere und die wichtigsten unregelmäßigen, mit Aussprache und Test.</p>
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/ItalianConjug" target="_blank" rel="noopener" aria-label="ItalianConjug auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Okt 2026</span></span></div>
           </div>
         </div>
       </section>
@@ -1405,7 +1435,7 @@
       ariaThemeLight:"Helles Design", ariaThemeDark:"Dunkles Design", ariaThemeSystem:"Systemeinstellung",
       navHommagen:"Hommagen", navPhysik:"Physik & Chaos", navKarten:"Karten & Daten", navSpiele:"Spiele", navWerkzeuge:"Werkzeuge", navWebcams:"Webcams",
       sheetHommagen:"Hommagen & Porträts", sheetSpiele:"Spiele & Rätsel", sheetWerkzeuge:"Werkzeuge & Lernen",
-      heroKicker:"54 Projekte. Ein Profil. Live auf GitHub Pages.",
+      heroKicker:"56 Projekte. Ein Profil. Live auf GitHub Pages.",
       heroLede:"Interaktive Fundstücke zwischen Kabarett, Chaostheorie und Kartografie — jedes einzeln veröffentlicht von <strong>@HelmutQualtinger</strong>. Die Wirbelspur im Hintergrund ist kein Muster, sondern ein echtes Doppelpendel in Echtzeit.",
       heroCtaPrimary:"Kartei durchsehen",
       heroCtaSecondary:'Profil auf GitHub <span class="chev">›</span>',
@@ -1415,7 +1445,8 @@
       sectionKartenH2:"Die Welt, in Kacheln gelesen.", sectionKartenCount:"8 Projekte",
       sectionSpieleH2:"Gebaut, um mitzuspielen.", sectionSpieleCount:"13 Projekte",
       sheetWebcams:"Webcams & Live-Blicke", sectionWebcamsH2:"Der Blick nach draußen.", sectionWebcamsCount:"3 Projekte",
-      sectionWerkzeugeH2:"Kleine Helfer, große Wirkung.", sectionWerkzeugeCount:"15 Projekte",
+      sectionWerkzeugeH2:"Kleine Helfer, große Wirkung.", sectionWerkzeugeCount:"14 Projekte",
+      navSprachen:"Sprachen", sheetSprachen:"Sprachen & Grammatik", sectionSprachenH2:"Wörter, Artikel, Verben.", sectionSprachenCount:"3 Projekte",
       cardWissenschafter:"Interaktive Profile berühmter Wissenschaftler",
       cardGoethe:"Interaktive Hommage an Johann Wolfgang von Goethe",
       cardQualtinger:"Interaktive Hommage an Helmut Qualtinger",
@@ -1454,7 +1485,9 @@
       cardSudoku:"Sudoku im Browser",
       cardLifeJS:"Conways Spiel des Lebens in JavaScript",
       cardTraining:"Übungs- und Trainingsanwendung",
-      cardLanguageCards:"Vokabelkarten zum Sprachenlernen",
+      cardLanguageCards:"Spanische Vokabeln als Karteikarten, Zielsprache Italienisch, Deutsch oder Englisch, mit Beispielsätzen und Sprachausgabe.",
+      cardItalianArticles:"Wie der Anfangsbuchstabe zwischen il, lo, l’, la, un, uno, un’ entscheidet und wie Artikel mit Präpositionen verschmelzen.",
+      cardItalianConjug:"Interaktive Folien zur Konjugation italienischer Verben: regelmäßige Verben, essere, avere und die wichtigsten unregelmäßigen, mit Aussprache und Test.",
       cardBoycott:"Interaktives Web-Tool",
       cardWienerSchule:"Lernanwendung mit Wien-Bezug",
       cardApache:"Docker-Konfiguration für Apache-Webserver",
@@ -1481,7 +1514,7 @@
       ariaThemeLight:"Light mode", ariaThemeDark:"Dark mode", ariaThemeSystem:"System setting",
       navHommagen:"Tributes", navPhysik:"Physics & Chaos", navKarten:"Maps & Data", navSpiele:"Games", navWerkzeuge:"Tools", navWebcams:"Webcams",
       sheetHommagen:"Tributes & Portraits", sheetSpiele:"Games & Puzzles", sheetWerkzeuge:"Tools & Learning",
-      heroKicker:"54 projects. One profile. Live on GitHub Pages.",
+      heroKicker:"56 projects. One profile. Live on GitHub Pages.",
       heroLede:"Interactive finds between cabaret, chaos theory and cartography — each individually published by <strong>@HelmutQualtinger</strong>. The swirling trail in the background isn't a pattern, it's a real double pendulum in real time.",
       heroCtaPrimary:"Browse the collection",
       heroCtaSecondary:'GitHub profile <span class="chev">›</span>',
@@ -1491,7 +1524,8 @@
       sectionKartenH2:"The world, read in tiles.", sectionKartenCount:"8 projects",
       sectionSpieleH2:"Built to be played.", sectionSpieleCount:"13 projects",
       sheetWebcams:"Webcams & Live Views", sectionWebcamsH2:"The view outside.", sectionWebcamsCount:"3 projects",
-      sectionWerkzeugeH2:"Small helpers, big impact.", sectionWerkzeugeCount:"15 projects",
+      sectionWerkzeugeH2:"Small helpers, big impact.", sectionWerkzeugeCount:"14 projects",
+      navSprachen:"Languages", sheetSprachen:"Languages & Grammar", sectionSprachenH2:"Words, articles, verbs.", sectionSprachenCount:"3 projects",
       cardWissenschafter:"Interactive profiles of famous scientists",
       cardGoethe:"Interactive tribute to Johann Wolfgang von Goethe",
       cardQualtinger:"Interactive tribute to Helmut Qualtinger",
@@ -1530,7 +1564,9 @@
       cardSudoku:"Sudoku in the browser",
       cardLifeJS:"Conway's Game of Life in JavaScript",
       cardTraining:"Practice and training application",
-      cardLanguageCards:"Vocabulary flashcards for language learning",
+      cardLanguageCards:"Spanish vocabulary flashcards with Italian, German or English as target language, example sentences and speech output.",
+      cardItalianArticles:"How the first letter decides between il, lo, l’, la, un, uno, un’ and how articles merge with prepositions.",
+      cardItalianConjug:"Interactive slides on Italian verb conjugation: regular verbs, essere, avere and the main irregulars, with pronunciation and quiz.",
       cardBoycott:"Interactive web tool",
       cardWienerSchule:"Learning app with a Vienna focus",
       cardApache:"Apache web server Docker configuration",
@@ -1557,7 +1593,7 @@
       ariaThemeLight:"Modalità chiara", ariaThemeDark:"Modalità scura", ariaThemeSystem:"Impostazione di sistema",
       navHommagen:"Omaggi", navPhysik:"Fisica & Caos", navKarten:"Mappe & Dati", navSpiele:"Giochi", navWerkzeuge:"Strumenti", navWebcams:"Webcam",
       sheetHommagen:"Omaggi & Ritratti", sheetSpiele:"Giochi & Rompicapi", sheetWerkzeuge:"Strumenti & Apprendimento",
-      heroKicker:"54 progetti. Un profilo. Live su GitHub Pages.",
+      heroKicker:"56 progetti. Un profilo. Live su GitHub Pages.",
       heroLede:"Trovate interattive tra cabaret, teoria del caos e cartografia — ciascuna pubblicata singolarmente da <strong>@HelmutQualtinger</strong>. La traccia vorticosa sullo sfondo non è un motivo grafico, ma un vero pendolo doppio in tempo reale.",
       heroCtaPrimary:"Sfoglia la raccolta",
       heroCtaSecondary:'Profilo su GitHub <span class="chev">›</span>',
@@ -1567,7 +1603,8 @@
       sectionKartenH2:"Il mondo, letto a tessere.", sectionKartenCount:"8 progetti",
       sectionSpieleH2:"Costruiti per giocarci.", sectionSpieleCount:"13 progetti",
       sheetWebcams:"Webcam & sguardi dal vivo", sectionWebcamsH2:"Lo sguardo verso fuori.", sectionWebcamsCount:"3 progetti",
-      sectionWerkzeugeH2:"Piccoli aiuti, grande effetto.", sectionWerkzeugeCount:"15 progetti",
+      sectionWerkzeugeH2:"Piccoli aiuti, grande effetto.", sectionWerkzeugeCount:"14 progetti",
+      navSprachen:"Lingue", sheetSprachen:"Lingue & Grammatica", sectionSprachenH2:"Parole, articoli, verbi.", sectionSprachenCount:"3 progetti",
       cardWissenschafter:"Profili interattivi di scienziati famosi",
       cardGoethe:"Omaggio interattivo a Johann Wolfgang von Goethe",
       cardQualtinger:"Omaggio interattivo a Helmut Qualtinger",
@@ -1606,7 +1643,9 @@
       cardSudoku:"Sudoku nel browser",
       cardLifeJS:"Il gioco della vita di Conway in JavaScript",
       cardTraining:"Applicazione di esercizio e allenamento",
-      cardLanguageCards:"Flashcard di vocabolario per l'apprendimento delle lingue",
+      cardLanguageCards:"Flashcard di vocabolario spagnolo con italiano, tedesco o inglese come lingua di destinazione, frasi d’esempio e sintesi vocale.",
+      cardItalianArticles:"Come la lettera iniziale decide fra il, lo, l’, la, un, uno, un’ e come l’articolo si fonde con le preposizioni.",
+      cardItalianConjug:"Diapositive interattive sulla coniugazione dei verbi italiani: regolari, essere, avere e i principali irregolari, con pronuncia e test.",
       cardBoycott:"Strumento web interattivo",
       cardWienerSchule:"App didattica dedicata a Vienna",
       cardApache:"Configurazione Docker per server web Apache",
