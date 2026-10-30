@@ -124,7 +124,7 @@
     box-shadow:0 3px 0 -2px var(--line);
   }
   .nav-inner{
-    max-width:1120px; margin:0 auto; height:100%;
+    max-width:1340px; margin:0 auto; height:100%;
     padding-inline:clamp(16px,5vw,44px);
     display:flex; align-items:center; gap:8px;
   }
@@ -476,7 +476,7 @@
   footer .credit{font-size:13px; opacity:.75;}
   footer .rule{height:1px; background:#5e5446; margin:22px auto 18px; max-width:160px;}
 
-  @media (max-width:900px){
+  @media (max-width:1340px){
     .nav-links{display:none;}
     .burger{display:flex;}
   }
@@ -556,6 +556,10 @@
   <line x1="17" y1="19" x2="12" y2="12"/>
   <line x1="7" y1="19" x2="12" y2="12"/>
   <line x1="4" y1="9" x2="12" y2="12"/>
+</g>
+<g id="i-palette" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M12 3a9 9 0 1 0 0 18c1.4 0 2.2-1 2.2-2.1 0-1.2-.9-1.7-.9-2.7 0-1 .8-1.7 1.9-1.7H17a4 4 0 0 0 4-4C21 6.4 17 3 12 3z"/>
+  <circle cx="7.6" cy="11.5" r="1"/><circle cx="10.2" cy="7.5" r="1"/><circle cx="14.6" cy="7.5" r="1"/>
 </g>
 <g id="i-landmark" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
   <line x1="4" y1="21" x2="20" y2="21"/>
@@ -798,6 +802,7 @@
       <a href="#werkzeuge" data-i18n="navWerkzeuge">Werkzeuge</a>
       <a href="#sprachen" data-i18n="navSprachen">Sprachen</a>
       <a href="#hommagen" data-i18n="navHommagen">Hommagen</a>
+      <a href="#kunst" data-i18n="navKunst">Kunst</a>
       <a href="#physik" data-i18n="navPhysik">Physik &amp; Chaos</a>
       <a href="#karten" data-i18n="navKarten">Karten &amp; Daten</a>
       <a href="#spiele" data-i18n="navSpiele">Spiele</a>
@@ -826,6 +831,7 @@
     <a href="#werkzeuge"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-toolbox"/></svg></span><span data-i18n="sheetWerkzeuge">Werkzeuge &amp; Lernen</span></a>
     <a href="#sprachen"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-speech"/></svg></span><span data-i18n="sheetSprachen">Sprachen &amp; Grammatik</span></a>
     <a href="#hommagen"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-portrait"/></svg></span><span data-i18n="sheetHommagen">Hommagen &amp; Porträts</span></a>
+    <a href="#kunst"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-palette"/></svg></span><span data-i18n="navKunst">Kunst</span></a>
     <a href="#physik"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-atom"/></svg></span><span data-i18n="navPhysik">Physik &amp; Chaos</span></a>
     <a href="#karten"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-pin"/></svg></span><span data-i18n="navKarten">Karten &amp; Daten</span></a>
     <a href="#spiele"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-dice"/></svg></span><span data-i18n="sheetSpiele">Spiele &amp; Rätsel</span></a>
@@ -836,14 +842,14 @@
 <header class="hero" id="top">
   <canvas id="pendulumCanvas" aria-hidden="true"></canvas>
   <div class="hero-inner">
-    <p class="kicker" data-i18n="heroKicker">56 Projekte. Ein Profil. Live auf GitHub Pages.</p>
+    <p class="kicker" data-i18n="heroKicker">59 Projekte. Ein Profil. Live auf GitHub Pages.</p>
     <h1 class="title">Qualtingers Kartei</h1>
     <div class="city-arms">
-      <svg viewBox="-5 -5 365.67 457.66" role="img" aria-label="Wappen des Kantons St. Gallen"><title>St. Gallen</title><use href="#i-sg-arms"/></svg>
       <img src="img/wappen-wien.svg" alt="Wappen von Wien" title="Wien">
       <img src="img/wappen-genf.svg" alt="Wappen von Genf" title="Genf">
-      <img src="img/wappen-muenchen.svg" alt="Wappen von München" title="München">
       <img src="img/wappen-rom.png" alt="Logo der AS Roma mit Kapitolinischer Wölfin" title="Rom">
+      <img src="img/wappen-muenchen.svg" alt="Wappen von München" title="München">
+      <svg viewBox="-5 -5 365.67 457.66" role="img" aria-label="Wappen des Kantons St. Gallen"><title>St. Gallen</title><use href="#i-sg-arms"/></svg>
     </div>
     <p class="lede" data-i18n-html="heroLede">Interaktive Fundstücke zwischen Kabarett, Chaostheorie und Kartografie — jedes einzeln veröffentlicht von <strong>@HelmutQualtinger</strong>. Die Wirbelspur im Hintergrund ist kein Muster, sondern ein echtes Doppelpendel in Echtzeit.</p>
     <div class="cta-row">
@@ -851,10 +857,10 @@
       <a class="link-more" href="https://github.com/HelmutQualtinger" target="_blank" rel="noopener" data-i18n-html="heroCtaSecondary">Profil auf GitHub <span class="chev">›</span></a>
     </div>
     <div class="hero-stats">
-      <div><b>139</b><span data-i18n="statRepos">Repositories</span></div>
-      <div><b>60</b><span data-i18n="statLive">mit Pages live</span></div>
-      <div><b>7</b><span data-i18n="statRubriken">Rubriken</span></div>
-      <div><b>29.10.26</b><span data-i18n="statStand">Stand</span></div>
+      <div><b>140</b><span data-i18n="statRepos">Repositories</span></div>
+      <div><b>61</b><span data-i18n="statLive">mit Pages live</span></div>
+      <div><b>8</b><span data-i18n="statRubriken">Rubriken</span></div>
+      <div><b>30.10.26</b><span data-i18n="statStand">Stand</span></div>
     </div>
   </div>
 </header>
@@ -987,7 +993,7 @@
         <div class="section-head">
           <p class="eyebrow"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-portrait"/></svg></span><span data-i18n="sheetHommagen">Hommagen &amp; Porträts</span></p>
           <h2 data-i18n="sectionHommagenH2">Die Stimmen, die bleiben.</h2>
-          <span class="count" data-i18n="sectionHommagenCount">7 Projekte</span>
+          <span class="count" data-i18n="sectionHommagenCount">6 Projekte</span>
         </div>
         <div class="grid">
           <div class="card">
@@ -1021,16 +1027,44 @@
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/dodekaeder" target="_blank" rel="noopener" aria-label="dodekaeder auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Sep 2026</span></span></div>
           </div>
           <div class="card">
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/WienerSchule/slide13-social-preview.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-cap"/></svg></span><span class="go">↗</span></div>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/WienerSchule/" target="_blank" rel="noopener">WienerSchule</a></h3>
+            <p data-i18n="cardWienerSchule">Lernanwendung mit Wien-Bezug</p>
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/WienerSchule" target="_blank" rel="noopener" aria-label="WienerSchule auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Aug 2026</span></span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="kunst">
+        <div class="section-head">
+          <p class="eyebrow"><span class="icon-badge"><svg viewBox="0 0 24 24"><use href="#i-palette"/></svg></span><span data-i18n="navKunst">Kunst</span></p>
+          <h2 data-i18n="sectionKunstH2">Form, Farbe, Raum.</h2>
+          <span class="count" data-i18n="sectionKunstCount">4 Projekte</span>
+        </div>
+        <div class="grid">
+          <div class="card">
             <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Museum3d/docs/og-image.jpg" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-landmark"/></svg></span><span class="go">↗</span></div>
             <h3><a class="card-link" href="https://helmutqualtinger.github.io/Museum3d/" target="_blank" rel="noopener">Museum3d</a></h3>
             <p data-i18n="cardMuseum3d">Begehbares 3D-Kunstmuseum, gebaut mit Three.js</p>
             <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Museum3d" target="_blank" rel="noopener" aria-label="Museum3d auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Aug 2026</span></span></div>
           </div>
           <div class="card">
-            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/WienerSchule/slide13-social-preview.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-cap"/></svg></span><span class="go">↗</span></div>
-            <h3><a class="card-link" href="https://helmutqualtinger.github.io/WienerSchule/" target="_blank" rel="noopener">WienerSchule</a></h3>
-            <p data-i18n="cardWienerSchule">Lernanwendung mit Wien-Bezug</p>
-            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/WienerSchule" target="_blank" rel="noopener" aria-label="WienerSchule auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Aug 2026</span></span></div>
+            <div class="card-top"><span class="card-icon"><img src="https://helmutqualtinger.github.io/Schablone/og.png" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-palette"/></svg></span><span class="go">↗</span></div>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/Schablone/" target="_blank" rel="noopener">Schablone</a></h3>
+            <p data-i18n="cardSchablone">Vierfarb-Sprayschablonen aus einem Foto: Tonwerttrennung, Stege, 3D-Modelle und eine Simulation des gesprühten Bilds.</p>
+            <div class="card-foot"><span><span class="lang-dot"></span>HTML</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/Schablone" target="_blank" rel="noopener" aria-label="Schablone auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Okt 2026</span></span></div>
+          </div>
+          <a class="card" href="https://github.com/HelmutQualtinger/vase-evolution" target="_blank" rel="noopener">
+            <div class="card-top"><span class="card-icon"><img src="img/vase-evolution.gif" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-palette"/></svg></span><span class="go">↗</span></div>
+            <h3>vase-evolution</h3>
+            <p data-i18n="cardVaseEvolution">Parametrische 3D-Vase in Python: vom Dreieck zum Kreis, 90° verdreht, mit druckfertiger STL-Datei.</p>
+            <div class="card-foot"><span><span class="lang-dot"></span>Python</span><span>Okt 2026</span></div>
+          </a>
+          <div class="card">
+            <div class="card-top"><span class="card-icon"><img src="img/wuerfel.gif" alt="" loading="lazy" onerror="this.remove()"><svg viewBox="0 0 24 24"><use href="#i-cube"/></svg></span><span class="go">↗</span></div>
+            <h3><a class="card-link" href="https://helmutqualtinger.github.io/wuerfel/" target="_blank" rel="noopener">wuerfel</a></h3>
+            <p data-i18n="cardWuerfel">Parametrischer Goldwürfel aus ineinander verschachtelten Rahmen, ein einziger zusammenhängender Körper, mit CAD-Modell und technischer Zeichnung.</p>
+            <div class="card-foot"><span><span class="lang-dot"></span>Python</span><span class="foot-r"><a class="gh" href="https://github.com/HelmutQualtinger/wuerfel" target="_blank" rel="noopener" aria-label="wuerfel auf GitHub" title="Quellcode auf GitHub"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-github"/></svg></a><span>Okt 2026</span></span></div>
           </div>
         </div>
       </section>
@@ -1438,17 +1472,18 @@
       ariaThemeLight:"Helles Design", ariaThemeDark:"Dunkles Design", ariaThemeSystem:"Systemeinstellung",
       navHommagen:"Hommagen", navPhysik:"Physik & Chaos", navKarten:"Karten & Daten", navSpiele:"Spiele", navWerkzeuge:"Werkzeuge", navWebcams:"Webcams",
       sheetHommagen:"Hommagen & Porträts", sheetSpiele:"Spiele & Rätsel", sheetWerkzeuge:"Werkzeuge & Lernen",
-      heroKicker:"56 Projekte. Ein Profil. Live auf GitHub Pages.",
+      heroKicker:"59 Projekte. Ein Profil. Live auf GitHub Pages.",
       heroLede:"Interaktive Fundstücke zwischen Kabarett, Chaostheorie und Kartografie — jedes einzeln veröffentlicht von <strong>@HelmutQualtinger</strong>. Die Wirbelspur im Hintergrund ist kein Muster, sondern ein echtes Doppelpendel in Echtzeit.",
       heroCtaPrimary:"Kartei durchsehen",
       heroCtaSecondary:'Profil auf GitHub <span class="chev">›</span>',
       statRepos:"Repositories", statLive:"mit Pages live", statRubriken:"Rubriken", statStand:"Stand",
-      sectionHommagenH2:"Die Stimmen, die bleiben.", sectionHommagenCount:"7 Projekte",
+      sectionHommagenH2:"Die Stimmen, die bleiben.", sectionHommagenCount:"6 Projekte",
       sectionPhysikEyebrow:"Physik, Geometrie & Chaos", sectionPhysikH2:"Wo die Ordnung kippt.", sectionPhysikCount:"13 Projekte",
       sectionKartenH2:"Die Welt, in Kacheln gelesen.", sectionKartenCount:"8 Projekte",
       sectionSpieleH2:"Gebaut, um mitzuspielen.", sectionSpieleCount:"13 Projekte",
       sheetWebcams:"Webcams & Live-Blicke", sectionWebcamsH2:"Der Blick nach draußen.", sectionWebcamsCount:"3 Projekte",
       sectionWerkzeugeH2:"Kleine Helfer, große Wirkung.", sectionWerkzeugeCount:"14 Projekte",
+      navKunst:"Kunst", sectionKunstH2:"Form, Farbe, Raum.", sectionKunstCount:"4 Projekte",
       navSprachen:"Sprachen", sheetSprachen:"Sprachen & Grammatik", sectionSprachenH2:"Wörter, Artikel, Verben.", sectionSprachenCount:"3 Projekte",
       cardWissenschafter:"Interaktive Profile berühmter Wissenschaftler",
       cardGoethe:"Interaktive Hommage an Johann Wolfgang von Goethe",
@@ -1456,6 +1491,9 @@
       cardArtmann:"Interaktive Hommage an H.C. Artmann",
       cardDodekaeder:"Zwei interaktive 3D-Dodekaeder-Porträtgalerien (Three.js)",
       cardMuseum3d:"Begehbares 3D-Kunstmuseum, gebaut mit Three.js",
+      cardSchablone:"Vierfarb-Sprayschablonen aus einem Foto: Tonwerttrennung, Stege, 3D-Modelle und eine Simulation des gesprühten Bilds.",
+      cardWuerfel:"Parametrischer Goldwürfel aus ineinander verschachtelten Rahmen, ein einziger zusammenhängender Körper, mit CAD-Modell und technischer Zeichnung.",
+      cardVaseEvolution:"Parametrische 3D-Vase in Python: vom Dreieck zum Kreis, 90° verdreht, mit druckfertiger STL-Datei.",
       cardLaSilla:"La-Silla-Observatorium der ESO in der Atacama-Wüste", cardJapan:"Japanischer Tempel zum Erkunden",
       cardDoppelpendel:"Chaotisches Doppelpendel — dieselbe Physik, die den Hintergrund oben zeichnet",
       cardNewtonian:"Newtonscher Teilchenphysik-Simulator in TypeScript",
@@ -1517,17 +1555,18 @@
       ariaThemeLight:"Light mode", ariaThemeDark:"Dark mode", ariaThemeSystem:"System setting",
       navHommagen:"Tributes", navPhysik:"Physics & Chaos", navKarten:"Maps & Data", navSpiele:"Games", navWerkzeuge:"Tools", navWebcams:"Webcams",
       sheetHommagen:"Tributes & Portraits", sheetSpiele:"Games & Puzzles", sheetWerkzeuge:"Tools & Learning",
-      heroKicker:"56 projects. One profile. Live on GitHub Pages.",
+      heroKicker:"59 projects. One profile. Live on GitHub Pages.",
       heroLede:"Interactive finds between cabaret, chaos theory and cartography — each individually published by <strong>@HelmutQualtinger</strong>. The swirling trail in the background isn't a pattern, it's a real double pendulum in real time.",
       heroCtaPrimary:"Browse the collection",
       heroCtaSecondary:'GitHub profile <span class="chev">›</span>',
       statRepos:"Repositories", statLive:"live with Pages", statRubriken:"Categories", statStand:"As of",
-      sectionHommagenH2:"The voices that remain.", sectionHommagenCount:"7 projects",
+      sectionHommagenH2:"The voices that remain.", sectionHommagenCount:"6 projects",
       sectionPhysikEyebrow:"Physics, Geometry & Chaos", sectionPhysikH2:"Where order tips over.", sectionPhysikCount:"13 projects",
       sectionKartenH2:"The world, read in tiles.", sectionKartenCount:"8 projects",
       sectionSpieleH2:"Built to be played.", sectionSpieleCount:"13 projects",
       sheetWebcams:"Webcams & Live Views", sectionWebcamsH2:"The view outside.", sectionWebcamsCount:"3 projects",
       sectionWerkzeugeH2:"Small helpers, big impact.", sectionWerkzeugeCount:"14 projects",
+      navKunst:"Art", sectionKunstH2:"Form, colour, space.", sectionKunstCount:"4 projects",
       navSprachen:"Languages", sheetSprachen:"Languages & Grammar", sectionSprachenH2:"Words, articles, verbs.", sectionSprachenCount:"3 projects",
       cardWissenschafter:"Interactive profiles of famous scientists",
       cardGoethe:"Interactive tribute to Johann Wolfgang von Goethe",
@@ -1535,6 +1574,9 @@
       cardArtmann:"Interactive tribute to H.C. Artmann",
       cardDodekaeder:"Two interactive 3D dodecahedron portrait galleries (Three.js)",
       cardMuseum3d:"A walkable 3D art museum built with Three.js",
+      cardSchablone:"Four-colour spray stencils from a photo: tone separation, bridges, 3D models and a simulation of the sprayed image.",
+      cardWuerfel:"Parametric gold cube of nested frames forming one connected solid, with CAD model and technical drawing.",
+      cardVaseEvolution:"Parametric 3D vase in Python: from triangle to circle, twisted 90°, with a print-ready STL file.",
       cardLaSilla:"ESO's La Silla Observatory in the Atacama Desert", cardJapan:"A Japanese temple to explore",
       cardDoppelpendel:"Chaotic double pendulum — the same physics drawing the background above",
       cardNewtonian:"Newtonian particle physics simulator in TypeScript",
@@ -1596,17 +1638,18 @@
       ariaThemeLight:"Modalità chiara", ariaThemeDark:"Modalità scura", ariaThemeSystem:"Impostazione di sistema",
       navHommagen:"Omaggi", navPhysik:"Fisica & Caos", navKarten:"Mappe & Dati", navSpiele:"Giochi", navWerkzeuge:"Strumenti", navWebcams:"Webcam",
       sheetHommagen:"Omaggi & Ritratti", sheetSpiele:"Giochi & Rompicapi", sheetWerkzeuge:"Strumenti & Apprendimento",
-      heroKicker:"56 progetti. Un profilo. Live su GitHub Pages.",
+      heroKicker:"59 progetti. Un profilo. Live su GitHub Pages.",
       heroLede:"Trovate interattive tra cabaret, teoria del caos e cartografia — ciascuna pubblicata singolarmente da <strong>@HelmutQualtinger</strong>. La traccia vorticosa sullo sfondo non è un motivo grafico, ma un vero pendolo doppio in tempo reale.",
       heroCtaPrimary:"Sfoglia la raccolta",
       heroCtaSecondary:'Profilo su GitHub <span class="chev">›</span>',
       statRepos:"Repository", statLive:"live con Pages", statRubriken:"Categorie", statStand:"Aggiornato al",
-      sectionHommagenH2:"Le voci che restano.", sectionHommagenCount:"7 progetti",
+      sectionHommagenH2:"Le voci che restano.", sectionHommagenCount:"6 progetti",
       sectionPhysikEyebrow:"Fisica, Geometria & Caos", sectionPhysikH2:"Dove l'ordine si ribalta.", sectionPhysikCount:"13 progetti",
       sectionKartenH2:"Il mondo, letto a tessere.", sectionKartenCount:"8 progetti",
       sectionSpieleH2:"Costruiti per giocarci.", sectionSpieleCount:"13 progetti",
       sheetWebcams:"Webcam & sguardi dal vivo", sectionWebcamsH2:"Lo sguardo verso fuori.", sectionWebcamsCount:"3 progetti",
       sectionWerkzeugeH2:"Piccoli aiuti, grande effetto.", sectionWerkzeugeCount:"14 progetti",
+      navKunst:"Arte", sectionKunstH2:"Forma, colore, spazio.", sectionKunstCount:"4 progetti",
       navSprachen:"Lingue", sheetSprachen:"Lingue & Grammatica", sectionSprachenH2:"Parole, articoli, verbi.", sectionSprachenCount:"3 progetti",
       cardWissenschafter:"Profili interattivi di scienziati famosi",
       cardGoethe:"Omaggio interattivo a Johann Wolfgang von Goethe",
@@ -1614,6 +1657,9 @@
       cardArtmann:"Omaggio interattivo a H.C. Artmann",
       cardDodekaeder:"Due gallerie di ritratti 3D interattive a forma di dodecaedro (Three.js)",
       cardMuseum3d:"Un museo d'arte 3D visitabile, realizzato con Three.js",
+      cardSchablone:"Stencil spray a quattro colori da una foto: separazione dei toni, ponticelli, modelli 3D e una simulazione dell'immagine spruzzata.",
+      cardWuerfel:"Cubo d'oro parametrico di telai annidati, un unico corpo connesso, con modello CAD e disegno tecnico.",
+      cardVaseEvolution:"Vaso 3D parametrico in Python: dal triangolo al cerchio, ruotato di 90°, con file STL pronto per la stampa.",
       cardLaSilla:"Osservatorio di La Silla dell'ESO nel deserto di Atacama", cardJapan:"Tempio giapponese da esplorare",
       cardDoppelpendel:"Pendolo doppio caotico — la stessa fisica che disegna lo sfondo qui sopra",
       cardNewtonian:"Simulatore di fisica delle particelle newtoniana in TypeScript",
