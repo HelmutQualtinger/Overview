@@ -208,14 +208,13 @@
     padding:clamp(56px,8vw,96px) clamp(28px,6vw,56px) clamp(120px,16vw,200px);
     text-align:center;
   }
-  .title-row{
-    display:flex; align-items:flex-start; justify-content:center;
-    gap:clamp(12px,2vw,26px);
+  .city-arms{
+    display:flex; align-items:flex-end; justify-content:center;
+    gap:clamp(12px,2vw,24px);
+    margin-top:clamp(14px,2vw,22px);
   }
-  .arms{
-    flex:none; display:block; width:clamp(34px,5vw,62px); height:auto; aspect-ratio:365.67/457.66;
-    margin-top:.05em;
-  }
+  .city-arms img, .city-arms svg{display:block; height:clamp(38px,5vw,58px); width:auto;}
+  .city-arms svg{aspect-ratio:365.67/457.66;}
   .kicker{
     display:inline-block;
     margin:0 0 22px; padding:0 0 10px;
@@ -838,9 +837,13 @@
   <canvas id="pendulumCanvas" aria-hidden="true"></canvas>
   <div class="hero-inner">
     <p class="kicker" data-i18n="heroKicker">56 Projekte. Ein Profil. Live auf GitHub Pages.</p>
-    <div class="title-row">
-      <svg class="arms" viewBox="-5 -5 365.67 457.66" role="img" aria-label="Wappen des Kantons St. Gallen"><use href="#i-sg-arms"/></svg>
-      <h1 class="title">Qualtingers Kartei</h1>
+    <h1 class="title">Qualtingers Kartei</h1>
+    <div class="city-arms">
+      <svg viewBox="-5 -5 365.67 457.66" role="img" aria-label="Wappen des Kantons St. Gallen"><title>St. Gallen</title><use href="#i-sg-arms"/></svg>
+      <img src="img/wappen-wien.svg" alt="Wappen von Wien" title="Wien">
+      <img src="img/wappen-genf.svg" alt="Wappen von Genf" title="Genf">
+      <img src="img/wappen-muenchen.svg" alt="Wappen von München" title="München">
+      <img src="img/wappen-rom.png" alt="Logo der AS Roma mit Kapitolinischer Wölfin" title="Rom">
     </div>
     <p class="lede" data-i18n-html="heroLede">Interaktive Fundstücke zwischen Kabarett, Chaostheorie und Kartografie — jedes einzeln veröffentlicht von <strong>@HelmutQualtinger</strong>. Die Wirbelspur im Hintergrund ist kein Muster, sondern ein echtes Doppelpendel in Echtzeit.</p>
     <div class="cta-row">
@@ -1299,6 +1302,7 @@
     <div class="rule"></div>
     <p><span data-i18n="footerSourceLabel">Quelle:</span> <a href="https://github.com/HelmutQualtinger" target="_blank" rel="noopener">github.com/HelmutQualtinger</a></p>
     <p class="credit">Apache-Icon: Pierre Brice als Winnetou, Elspe 1986, Foto: Lothar Spurzem, <a href="https://commons.wikimedia.org/wiki/File:1986-08-02_Elspe_mit_Pierre_Brice-2.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/de/" target="_blank" rel="noopener">CC BY-SA 2.0 DE</a> (zugeschnitten).</p>
+    <p class="credit">Logo der AS Roma: Marke der AS Roma S.p.A.</p>
     <p data-i18n="footerDisclaimer">Diese Seite ist eine unabhängige Übersicht und keine offizielle Seite des Profils. Alle verlinkten Projekte öffnen in einem neuen Tab.</p>
   </div>
 </footer>
